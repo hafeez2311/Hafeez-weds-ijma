@@ -42,7 +42,7 @@
   }
 
   *{ box-sizing:border-box; }
-  html{ scroll-behavior:smooth; }
+  html{ scroll-behavior:smooth; font-size:calc(100% - 1pt); }
   html,body{
     margin:0; padding:0;
     background-color:var(--paper);
@@ -142,8 +142,18 @@
     display:flex; overflow:hidden; background:#d6cda9 url('img/Cover.png') center/cover no-repeat;
   }
   body.locked #main-content{ visibility:hidden; }
-  .cover-art{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; opacity:1; transition:opacity .65s ease; z-index:2; }
-  .cover-art.fade{ opacity:0; }
+  body.cover-opening #main-content{ visibility:visible; }
+  .cover-door-panel{
+    position:absolute; top:0; width:50%; height:100%; z-index:2;
+    background-image:url('img/Cover.png'); background-repeat:no-repeat; background-size:200% 100%;
+    box-shadow:inset 0 0 34px rgba(45,15,12,.22);
+    transition:transform 1.05s cubic-bezier(.76,0,.24,1);
+    backface-visibility:hidden;
+  }
+  .cover-door-left{ left:0; transform-origin:left center; background-position:left center; }
+  .cover-door-right{ right:0; transform-origin:right center; background-position:right center; }
+  .cover-door-left.open{ transform:translateX(-100%) rotateY(-8deg); }
+  .cover-door-right.open{ transform:translateX(100%) rotateY(8deg); }
 
   .wax-seal-wrap{
     position:absolute; top:44.5%; left:50%; transform:translate(-50%,-50%);
@@ -161,10 +171,6 @@
   }
   .wax-seal:active{ transform:scale(.96); }
   @keyframes sealRing{ from{ transform:rotate(0); } to{ transform:rotate(360deg); } }
-  .wax-seal .initials{
-    font-family:var(--serif-head); font-weight:700; font-size:2.1rem;
-    color:#f3d27a; letter-spacing:1px; opacity:0;
-  }
   .seal-hint{
     color:#fff0bb; font-size:0.72rem; letter-spacing:3px; text-transform:uppercase;
     text-shadow:0 2px 8px #392815; opacity:0.95; animation:hintPulse 2.4s ease-in-out infinite;
@@ -314,7 +320,6 @@
     box-shadow:inset 0 1px 1px rgba(255,255,255,.72),0 12px 34px rgba(0,0,0,.14);
     backdrop-filter:blur(14px) saturate(165%); -webkit-backdrop-filter:blur(14px) saturate(165%);
     border:1px solid rgba(255,255,255,.58);
-    transform-style:preserve-3d; transition:transform .18s ease-out;
   }
   .invitation-groom,.invitation-bride{ color:var(--wax-red-dark); font-size:clamp(2rem,5.5vw,3.4rem); line-height:1.05; }
   .invitation-with{
@@ -559,11 +564,10 @@
 
 <!-- ===================== DOOR COVER SCREEN ===================== -->
 <div id="door-screen" aria-label="Wedding invitation cover">
-  <img class="cover-art" id="cover-art" src="img/Cover.png" alt="Floral wedding invitation cover">
+  <div class="cover-door-panel cover-door-left" id="cover-door-left" aria-hidden="true"></div>
+  <div class="cover-door-panel cover-door-right" id="cover-door-right" aria-hidden="true"></div>
   <div class="wax-seal-wrap" id="wax-seal-wrap">
-    <button class="wax-seal" id="wax-seal" aria-label="Tap to open your invitation">
-      <span class="initials">H&amp;I</span>
-    </button>
+    <button class="wax-seal" id="wax-seal" aria-label="Tap to open your invitation"></button>
     <span class="seal-hint">Tap to open the invitation</span>
   </div>
 </div>
@@ -717,10 +721,6 @@
     <div class="reveal">
       <button class="calendar-btn" id="add-calendar-btn" type="button">Add to Calendar</button>
     </div>
-  </section>
-
-  <!-- PAGE 5 -->
-  <footer id="page5" class="page footer-page page-ivory">
     <div class="footer-glow" aria-hidden="true"></div>
     <p class="footer-blessing reveal" id="footer-blessing">With warmest compliments and heartfelt duas from<br><strong>Dasurkar Family &amp; Friends</strong></p>
     <div class="footer-contacts" aria-label="Contact by phone">
@@ -728,7 +728,7 @@
       <a href="tel:+918459605435"><span class="contact-action">Call</span><span class="contact-number">84596 05435</span></a>
     </div>
     <p class="footer-closing">May Allah bless our beginning with a lifetime of love, peace, and barakah.</p>
-  </footer>
+  </section>
 
 </div>
 
@@ -853,37 +853,13 @@
 
   /* ===================== Door opening interaction ===================== */
   var doorScreen = document.getElementById('door-screen');
+  var coverDoorLeft = document.getElementById('cover-door-left');
+  var coverDoorRight = document.getElementById('cover-door-right');
   var sealWrap = document.getElementById('wax-seal-wrap');
   var waxSeal = document.getElementById('wax-seal');
-  var coverArt = document.getElementById('cover-art');
   var lightBeam = document.getElementById('light-beam');
   var body = document.body;
   var coverOpening = false;
-  var invitationCouple = document.querySelector('.invitation-couple');
-  var motionTiltEnabled = false;
-
-  function handleDeviceOrientation(event){
-    if(event.beta === null || event.gamma === null) return;
-    var tiltX = Math.max(-8, Math.min(8, (event.beta / 30) * 8));
-    var tiltY = Math.max(-8, Math.min(8, (event.gamma / 30) * 8));
-    invitationCouple.style.transform = 'perspective(900px) rotateX(' + (-tiltX) + 'deg) rotateY(' + tiltY + 'deg)';
-  }
-
-  function enableMotionTilt(){
-    if(motionTiltEnabled || !window.DeviceOrientationEvent || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var requestPermission = window.DeviceOrientationEvent.requestPermission;
-    if(typeof requestPermission === 'function'){
-      requestPermission.call(window.DeviceOrientationEvent).then(function(permission){
-        if(permission === 'granted'){
-          window.addEventListener('deviceorientation', handleDeviceOrientation);
-          motionTiltEnabled = true;
-        }
-      }).catch(function(){});
-      return;
-    }
-    window.addEventListener('deviceorientation', handleDeviceOrientation);
-    motionTiltEnabled = true;
-  }
 
   var layoutButtons = document.querySelectorAll('.layout-switch [data-layout]');
   var layoutWasChosen = false;
@@ -910,15 +886,16 @@
   function openDoor(){
     if(coverOpening) return;
     coverOpening = true;
-    enableMotionTilt();
+    body.classList.add('cover-opening');
+    coverDoorLeft.classList.add('open');
+    coverDoorRight.classList.add('open');
     sealWrap.classList.add('open');
     setTimeout(function(){
       lightBeam.classList.add('flash');
-      coverArt.classList.add('fade');
     }, 380);
     setTimeout(function(){
       doorScreen.classList.add('hidden');
-      body.classList.remove('locked');
+      body.classList.remove('locked','cover-opening');
       document.getElementById('page1').classList.add('show');
       window.scrollTo(0,0);
       var musicPromise = invitationAudio.play();
