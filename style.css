@@ -240,7 +240,7 @@ body {
 
 .hero-names {
     font-family: 'Great Vibes', cursive;
-    font-size: 100px;
+    font-size: 112px;
     color: var(--gold-light);
     text-shadow: 0 0 20px rgba(223, 177, 91, 0.5);
     margin: 15px 0;
@@ -390,7 +390,7 @@ body {
     font-weight: 700;
     padding: 5px 15px;
     border-radius: 20px;
-    font-size: 13px;
+    font-size: 16px;
 }
 
 .event-detail {
@@ -452,7 +452,7 @@ footer {
 
 /* Larger couple names and family details */
 .hero-names {
-    font-size: clamp(4rem, 12vw, 7rem);
+    font-size: clamp(10rem, 12vw, 7rem);
 }
 
 .family-card {
@@ -468,7 +468,7 @@ footer {
 .event-name {
     font-size: 22px;
 }
-    .hero-names { font-size: 52px; }
+    .hero-names { font-size: 60px; }
     .door-names { font-size: 34px; }
     .section-padding { padding: 60px 15px; }
     .timer-box { width: 70px; height: 70px; }
@@ -481,4 +481,24 @@ footer {
   max-width: 480px;
   height: auto;
   margin: 0 auto;
+}
+
+.mehendi-title {
+  font-size: 40px;
+}
+
+@media (max-width: 768px) {
+  .mehendi-title {
+    font-size: 26px;
+  }
+}
+.event-venue {
+  font-size: 2rem;
+}
+
+.haldi-card .event-date,
+.haldi-card .event-time,
+.haldi-card .event-venue {
+  font-size: 1.2rem;
+  line-height: 1.5;
 }

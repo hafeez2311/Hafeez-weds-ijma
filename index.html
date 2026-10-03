@@ -136,55 +136,42 @@
     50%{ box-shadow:0 0 34px 14px rgba(112,26,51,0.9), 0 0 90px 40px rgba(112,26,51,0.5); }
   }
 
-  /* ---------- Door cover screen ---------- */
+  /* ---------- Video cover screen ---------- */
   #door-screen{
     position:fixed; inset:0; z-index:1000;
-    display:flex; overflow:hidden; background:#d6cda9 url('img/Cover.png') center/cover no-repeat;
+    display:flex; align-items:center; justify-content:center; overflow:hidden;
+    background:#1a0518 url('img/Cover.png') center/cover no-repeat;
+    opacity:1; transition:opacity .9s ease;
   }
+  #door-screen.cover-exit{ opacity:0; pointer-events:none; }
+  .cover-video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .cover-open-button{
+    position:absolute; inset:0; z-index:2; display:flex; align-items:flex-end; justify-content:center;
+    width:100%; padding:0 1rem max(12vh,4rem); border:0; color:#fffaf0;
+    background:linear-gradient(180deg,transparent 55%,rgba(26,5,24,.56));
+  }
+  .cover-open-button[hidden]{ display:none; }
+  .cover-open-label{
+    display:inline-block; padding:.9rem 2rem; border:1px solid rgba(247,224,163,.9);
+    border-radius:999px; background:rgba(26,5,24,.72); color:#fff0bb;
+    font:600 1rem/1 var(--serif-body); letter-spacing:.24em; text-transform:uppercase;
+    text-shadow:0 2px 8px rgba(0,0,0,.65); box-shadow:0 6px 24px rgba(0,0,0,.32);
+    animation:coverPromptPulse 2s ease-in-out infinite;
+  }
+  .cover-open-button:focus-visible .cover-open-label{ outline:3px solid #fffaf0; outline-offset:5px; }
+  .cover-open-button:disabled{ cursor:wait; }
+  @keyframes coverPromptPulse{
+    0%,100%{ transform:translateY(0); box-shadow:0 6px 24px rgba(0,0,0,.32); }
+    50%{ transform:translateY(-5px); box-shadow:0 10px 30px rgba(223,177,91,.4); }
+  }
+  .cover-error{
+    position:absolute; z-index:3; bottom:1.25rem; left:1rem; right:1rem;
+    margin:0; color:#fffaf0; text-align:center; font-size:1rem;
+    text-shadow:0 2px 8px #1a0518;
+  }
+  .cover-error[hidden]{ display:none; }
   body.locked #main-content{ visibility:hidden; }
   body.cover-opening #main-content{ visibility:visible; }
-  .cover-door-panel{
-    position:absolute; top:0; width:50%; height:100%; z-index:2;
-    background-image:url('img/Cover.png'); background-repeat:no-repeat; background-size:200% 100%;
-    box-shadow:inset 0 0 34px rgba(45,15,12,.22);
-    transition:transform 1.05s cubic-bezier(.76,0,.24,1);
-    backface-visibility:hidden;
-  }
-  .cover-door-left{ left:0; transform-origin:left center; background-position:left center; }
-  .cover-door-right{ right:0; transform-origin:right center; background-position:right center; }
-  .cover-door-left.open{ transform:translateX(-100%) rotateY(-8deg); }
-  .cover-door-right.open{ transform:translateX(100%) rotateY(8deg); }
-
-  .wax-seal-wrap{
-    position:absolute; top:44.5%; left:50%; transform:translate(-50%,-50%);
-    z-index:5; display:flex; flex-direction:column; align-items:center; gap:12px;
-    transition:opacity 0.8s ease 0.15s, transform 0.8s ease 0.15s;
-  }
-  .wax-seal-wrap.open{ opacity:0; transform:translate(-50%,-50%) scale(0.6); pointer-events:none; }
-  .wax-seal{
-    width:min(31vw,21vh); height:min(31vw,21vh); border-radius:50%;
-    background:transparent; box-shadow:none;
-    display:flex; align-items:center; justify-content:center;
-    position:relative;
-    border:none;
-    transition:transform 0.25s ease;
-  }
-  .wax-seal:active{ transform:scale(.96); }
-  @keyframes sealRing{ from{ transform:rotate(0); } to{ transform:rotate(360deg); } }
-  .seal-hint{
-    color:#fff0bb; font-size:0.72rem; letter-spacing:3px; text-transform:uppercase;
-    text-shadow:0 2px 8px #392815; opacity:0.95; animation:hintPulse 2.4s ease-in-out infinite;
-  }
-  @keyframes hintPulse{ 0%,100%{ opacity:0.5; } 50%{ opacity:0.95; } }
-
-  .light-beam{
-    position:fixed; inset:0; z-index:999; pointer-events:none;
-    background:radial-gradient(circle at 50% 45%, rgba(255,248,213,1) 0%, rgba(232,184,75,.82) 18%, rgba(205,151,49,.25) 42%, rgba(112,26,51,0) 66%);
-    opacity:0; transform:scale(.02); transform-origin:50% 45%;
-    transition:opacity .55s ease, transform .75s cubic-bezier(.16,1,.3,1);
-  }
-  .light-beam.flash{ opacity:1; transform:scale(1.35); }
-
   #door-screen.hidden{ display:none; }
 
   /* ---------- layout ---------- */
@@ -198,6 +185,7 @@
     background:rgba(255,252,244,.94); box-shadow:0 5px 18px rgba(54,37,12,.14);
     backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
   }
+  body.locked .layout-switch{ visibility:hidden; }
   .layout-switch button{
     display:grid; place-items:center; width:2rem; height:2rem; padding:0;
     border:0; border-radius:999px;
@@ -332,8 +320,8 @@
     animation:invitation-line-fade 2.4s ease-in-out infinite;
   }
   .invitation-with::after{ transform:scaleX(-1); }
-  .invitation-daughter{ color:var(--wax-red-dark); font-size:clamp(1.1rem,2.4vw,1.4rem); font-weight:600; line-height:1.35; }
-  .invitation-daughter strong{ display:inline; margin-right:.25em; color:var(--invite-gold-dark); font-size:clamp(1.25rem,2.8vw,1.55rem); line-height:1.2; }
+  .invitation-daughter{ color:var(--wax-red-dark); font-size:clamp(1.5rem,3vw,1.9rem); font-weight:600; line-height:1.35; }
+  .invitation-daughter strong{ display:inline; margin-right:.25em; color:var(--invite-gold-dark); font-size:clamp(1.7rem,3.4vw,2.15rem); line-height:1.2; }
 
   .scroll-hint{
     margin-top:3.2rem; font-size:0.78rem; letter-spacing:3px; text-transform:uppercase;
@@ -418,18 +406,18 @@
   .venue-map-link img{ display:block; width:100%; aspect-ratio:16/9; object-fit:cover; }
   .venue-map-link span{ display:block; padding:.9rem 1.1rem; background:rgba(255,250,237,.94); color:#76571f; font-weight:600; }
   .event-card h3{ color:#29483b; font-size:1.5rem; margin-bottom:0.9rem; }
-  .event-date{ font-size:1.05rem; color:#3d4b43; margin:0.2rem 0; }
-  .event-time{ font-size:0.98rem; color:#76571f; margin:0.2rem 0 0.8rem; }
+  .event-date{ font-size:1.25rem; color:#3d4b43; margin:0.2rem 0; }
+  .event-time{ font-size:1.2rem; color:#76571f; margin:0.2rem 0 0.8rem; }
   .nikah-card .event-time{ margin-bottom:.25rem; }
   .event-followup{
     display:inline-block; margin:0 auto .7rem; padding:.35rem .8rem; border:1px solid rgba(178,138,61,.42);
-    border-radius:999px; background:rgba(255,255,255,.55); color:#29483b; font-size:.88rem; font-weight:600;
+    border-radius:999px; background:rgba(255,255,255,.55); color:#29483b; font-size:1.1rem; font-weight:600;
   }
-  .event-venue{ font-size:0.95rem; color:#414b43; opacity:1; margin:0 0 1.3rem; line-height:1.5; }
+  .event-venue{ font-size:1.1rem; color:#414b43; opacity:1; margin:0 0 1.3rem; line-height:1.5; }
   .map-btn{
     display:inline-block; padding:0.65rem 1.3rem; border-radius:30px;
     border:1px solid #b28a3d; color:#29483b; text-decoration:none;
-    font-size:0.85rem; letter-spacing:1px; transition:all 0.3s ease;
+    font-size:1rem; letter-spacing:1px; transition:all 0.3s ease;
   }
   .map-btn:hover{ background:#29483b; color:#fffaf0; box-shadow:0 6px 16px rgba(41,72,59,.22); }
 
@@ -531,9 +519,6 @@
 
   @media (max-width:600px){
     .page::after{ inset:7px; border-width:1.5px; }
-    .wax-seal-wrap{ top:46%; gap:10px; }
-    .wax-seal{ width:min(31vw,21vh); height:min(31vw,21vh); }
-    .seal-hint{ font-size:.62rem; letter-spacing:2px; }
     .event-cards{ max-width:440px; gap:1.6rem; padding-left:2rem; }
     .event-cards::before{ left:.5rem; }
     .event-card{ width:100%; max-width:400px; justify-self:start; transform:translateY(22px); padding:1rem; }
@@ -550,8 +535,6 @@
     .countdown-page .calendar-btn{ display:block; margin:1rem auto 0; }
   }
 
-  @media (orientation:landscape){ .wax-seal-wrap{ top:45%; } }
-  @media (orientation:landscape) and (max-height:500px){ .wax-seal-wrap{ top:45%; } }
 
   @media (prefers-reduced-motion: reduce){
     *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; }
@@ -560,16 +543,13 @@
 </head>
 <body class="locked">
 
-<div class="light-beam" id="light-beam" aria-hidden="true"></div>
-
-<!-- ===================== DOOR COVER SCREEN ===================== -->
+<!-- ===================== VIDEO COVER SCREEN ===================== -->
 <div id="door-screen" aria-label="Wedding invitation cover">
-  <div class="cover-door-panel cover-door-left" id="cover-door-left" aria-hidden="true"></div>
-  <div class="cover-door-panel cover-door-right" id="cover-door-right" aria-hidden="true"></div>
-  <div class="wax-seal-wrap" id="wax-seal-wrap">
-    <button class="wax-seal" id="wax-seal" aria-label="Tap to open your invitation"></button>
-    <span class="seal-hint">Tap to open the invitation</span>
-  </div>
+  <video class="cover-video" id="cover-video" src="img/Entry%20Animation.mp4" poster="img/Cover.png" preload="metadata" playsinline aria-hidden="true"></video>
+  <button class="cover-open-button" id="cover-open-button" type="button" aria-label="Tap to open the invitation">
+    <span class="cover-open-label">Tap to open</span>
+  </button>
+  <p class="cover-error" id="cover-error" role="alert" hidden></p>
 </div>
 
 <div class="layout-switch" role="group" aria-label="Switch page layout">
@@ -583,7 +563,7 @@
 
 <!-- ===================== MAIN CONTENT ===================== -->
 <div id="main-content">
-  <audio id="invitation-audio" src="Audio/Audio2.mp3" preload="auto" loop></audio>
+  <audio id="invitation-audio" src="Audio/EntryMusic.mp3" preload="auto" loop></audio>
   <button class="audio-toggle" id="audio-toggle" type="button" aria-label="Play music" aria-pressed="false" title="Play music">
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <path d="M4 10v4h4l5 4V6l-5 4H4z"></path>
@@ -594,7 +574,7 @@
   <canvas id="petals-canvas" aria-hidden="true"></canvas>
 
   <!-- PAGE 1 -->
-  <section id="page1" class="page cover-zoom show">
+  <section id="page1" class="page cover-zoom">
     <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
     <div class="bismillah-translit"><strong>In the name of Allah, the Most Gracious, the Most Merciful.</strong></div>
 
@@ -686,10 +666,10 @@
             <path d="M46 50 L54 58 M50 54 L58 62" opacity="0.6"/>
           </svg>
         </div>
-        <h3>Mehendi Ceremony</h3>
+        <h3 >Mehendi Ceremony</h3>
         <h3>An evening of celebration</h3>
-        <p class="event-date">Saturday, November 28, 2026</p>
-        <p class="event-time">7:00 PM Onwards</p>
+        <p class="event-date"><strong>Saturday, November 28, 2026</strong></p>
+        <p class="event-time"><strong>7:00 PM Onwards</strong></p>
         <p class="event-followup">Followed by Dinner</p>
         <p class="event-venue">Venue: Aziza Manzil, At Post Kalambaste, Sangameshwar</p>
         <a class="map-btn" href="https://maps.app.goo.gl/8CEMJkRSpEpXc49NA" target="_blank" rel="noopener noreferrer">Open Google Maps</a>
@@ -698,7 +678,7 @@
       <div class="event-card reveal nikah-card">
         <img class="event-photo" src="img/Nikah%20Day.jpeg" alt="Nikah day celebration" loading="lazy">
         <h3>Our Nikah Day</h3>
-        <p class="event-date">Sunday, November 29, 2026</p>
+        <p class="event-date"><strong></strong>Sunday, November 29, 2026</strong></p>
         <p class="event-time">11:00 AM</p>
         <p class="event-followup">Followed by Lunch</p>
         <p class="event-venue">Venue: Kunbi Bhavan Hall, Kasba, Sangameshwar</p>
@@ -724,10 +704,9 @@
     <div class="footer-glow" aria-hidden="true"></div>
     <p class="footer-blessing reveal" id="footer-blessing">With warmest compliments and heartfelt duas from<br><strong>Dasurkar Family &amp; Friends</strong></p>
     <div class="footer-contacts" aria-label="Contact by phone">
-      <a href="tel:+917900197669"><span class="contact-action">Call</span><span class="contact-number">79001 97669</span></a>
-      <a href="tel:+918459605435"><span class="contact-action">Call</span><span class="contact-number">84596 05435</span></a>
+      <a href="tel:+917900197669"><span class="contact-action">Call</span><span class="contact-number">7900197669</span></a>
+      <a href="tel:+918459605435"><span class="contact-action">Call</span><span class="contact-number">8459605435</span></a>
     </div>
-    <p class="footer-closing">May Allah bless our beginning with a lifetime of love, peace, and barakah.</p>
   </section>
 
 </div>
@@ -851,13 +830,12 @@
   });
   window.addEventListener('resize', function(){ resizePetalCanvas(); });
 
-  /* ===================== Door opening interaction ===================== */
+  /* ===================== Video cover interaction ===================== */
   var doorScreen = document.getElementById('door-screen');
-  var coverDoorLeft = document.getElementById('cover-door-left');
-  var coverDoorRight = document.getElementById('cover-door-right');
-  var sealWrap = document.getElementById('wax-seal-wrap');
-  var waxSeal = document.getElementById('wax-seal');
-  var lightBeam = document.getElementById('light-beam');
+  var coverVideo = document.getElementById('cover-video');
+  var coverOpenButton = document.getElementById('cover-open-button');
+  var coverError = document.getElementById('cover-error');
+  var firstPage = document.getElementById('page1');
   var body = document.body;
   var coverOpening = false;
 
@@ -883,31 +861,48 @@
     if(!layoutWasChosen) setLayoutPreview(window.innerWidth <= 600 ? 'mobile' : 'desktop');
   });
 
-  function openDoor(){
-    if(coverOpening) return;
-    coverOpening = true;
+  function showCoverPlaybackError(error){
+    if(!coverOpening) return;
+    console.error('Unable to play the invitation cover video.', error);
+    coverOpening = false;
+    coverOpenButton.disabled = false;
+    coverOpenButton.hidden = false;
+    coverError.textContent = 'The video could not be played. Tap to try again.';
+    coverError.hidden = false;
+  }
+
+  function finishCoverVideo(){
+    if(!coverOpening || doorScreen.classList.contains('cover-exit')) return;
     body.classList.add('cover-opening');
-    coverDoorLeft.classList.add('open');
-    coverDoorRight.classList.add('open');
-    sealWrap.classList.add('open');
-    setTimeout(function(){
-      lightBeam.classList.add('flash');
-    }, 380);
+    firstPage.classList.remove('show');
+    doorScreen.classList.add('cover-exit');
+    requestAnimationFrame(function(){ firstPage.classList.add('show'); });
     setTimeout(function(){
       doorScreen.classList.add('hidden');
       body.classList.remove('locked','cover-opening');
-      document.getElementById('page1').classList.add('show');
       window.scrollTo(0,0);
       var musicPromise = invitationAudio.play();
       if(musicPromise && musicPromise.catch){ musicPromise.catch(updateAudioToggle); }
-      setTimeout(function(){ lightBeam.classList.remove('flash'); }, 450);
-    }, 1050);
+    }, 950);
   }
 
-  waxSeal.addEventListener('click', openDoor);
-  doorScreen.addEventListener('click', openDoor);
-  waxSeal.addEventListener('keydown', function(e){
-    if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openDoor(); }
+  coverOpenButton.addEventListener('click', function(){
+    if(coverOpening) return;
+    coverOpening = true;
+    coverOpenButton.disabled = true;
+    coverError.hidden = true;
+    var playPromise = coverVideo.play();
+    if(playPromise && playPromise.then){
+      playPromise.then(function(){
+        coverOpenButton.hidden = true;
+      }).catch(showCoverPlaybackError);
+    }else{
+      coverOpenButton.hidden = true;
+    }
+  });
+  coverVideo.addEventListener('ended', finishCoverVideo);
+  coverVideo.addEventListener('error', function(){
+    if(coverOpening) showCoverPlaybackError(coverVideo.error);
   });
 
   /* ===================== Scroll reveal (IntersectionObserver) ===================== */
