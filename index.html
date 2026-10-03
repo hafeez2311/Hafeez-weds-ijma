@@ -838,6 +838,19 @@
   var firstPage = document.getElementById('page1');
   var body = document.body;
   var coverOpening = false;
+  var coverVideoSources = {
+    desktop: 'img/Entry%20Animation.mp4',
+    mobile: 'img/EntryMobile.mp4'
+  };
+
+  function updateCoverVideoSource(layoutOverride){
+    var isMobile = layoutOverride === 'mobile' || (!layoutOverride && window.innerWidth <= 600);
+    var nextSrc = isMobile ? coverVideoSources.mobile : coverVideoSources.desktop;
+    if(coverVideo.getAttribute('src') !== nextSrc){
+      coverVideo.setAttribute('src', nextSrc);
+      coverVideo.load();
+    }
+  }
 
   var layoutButtons = document.querySelectorAll('.layout-switch [data-layout]');
   var layoutWasChosen = false;
@@ -845,6 +858,7 @@
     document.documentElement.dataset.layoutPreview = layout;
     document.getElementById('main-content').classList.toggle('layout-mobile', layout === 'mobile');
     document.getElementById('main-content').classList.toggle('layout-desktop', layout === 'desktop');
+    updateCoverVideoSource(layout);
     layoutButtons.forEach(function(button){
       button.setAttribute('aria-pressed', String(button.dataset.layout === layout));
     });
