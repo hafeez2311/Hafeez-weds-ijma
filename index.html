@@ -41,7 +41,7 @@
   }
 
   *{ box-sizing:border-box; }
-  html{ scroll-behavior:smooth; font-size:calc(100% - 1pt); -webkit-text-size-adjust:100%; text-size-adjust:100%; }
+  html{ scroll-behavior:smooth; font-size:calc(100% + 1pt); -webkit-text-size-adjust:100%; text-size-adjust:100%; }
   html,body{
     margin:0; padding:0;
     background-color:var(--paper);
@@ -232,7 +232,8 @@
   .bismillah{
     font-family:var(--arabic); font-size:clamp(2.2rem,7vw,3.5rem);
     color:var(--gold-bright); margin-bottom:0.6rem;
-    text-shadow:0 0 20px rgba(112,26,51,0.35);
+    font-weight:700;
+    text-shadow:0 0 6px rgba(112,26,51,0.18);
   }
   .bismillah-translit{
     font-size:0.95rem; letter-spacing:2px; text-transform:uppercase; color:var(--gold-dim);
@@ -244,9 +245,9 @@
     opacity:0.9; line-height:1.45; margin:1rem auto 1.4rem; text-align:center;
   }
   .blessing-note strong{
-    display:block; color:var(--gold); font-style:normal;
+    display:inline; color:var(--gold); font-style:normal;
     font-size:clamp(1rem,2.1vw,1.5rem); line-height:1.4;
-    margin:.35rem 0 0; text-align:center; white-space:normal;
+    margin:0; text-align:center; white-space:normal;
   }
 
   .invitation-copy{
@@ -329,6 +330,7 @@
   .reveal-content p{ margin:0; color:var(--gold-dim); }
   .reveal-content .date-label{ font-size:1rem; letter-spacing:2px; text-transform:uppercase; }
   .reveal-content .date-time{ font-size:1.18rem; letter-spacing:1px; text-transform:uppercase; }
+  .reveal-content .date-combined{ margin-top:.5rem; font-size:1.02rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-bright); font-weight:700; line-height:1.6; }
   .reveal-content h3{ font-size:clamp(2.2rem,5vw,3.1rem); color:var(--gold-bright); margin:0.55rem 0 0.6rem; line-height:1.1; }
   #scratch-canvas{ position:absolute; inset:0; width:100%; height:100%; touch-action:none; cursor:grab; }
   .scratch-hint{ font-size:0.9rem; color:var(--invite-gold-dark); letter-spacing:.08em; opacity:1; font-weight:600; }
@@ -398,10 +400,10 @@
   .countdown-page .countdown.reveal{ transition-delay:.2s; }
   .countdown-page .nikah-meta.reveal{ transition-delay:.32s; }
   .countdown-kicker{ margin:0 0 1.3rem; color:#76571f; font-size:.72rem; font-weight:700; letter-spacing:.24em; text-transform:uppercase; }
-  .countdown-title{ max-width:900px; color:#4d0e20; font-size:clamp(2.6rem,7vw,6.2rem); font-weight:500; line-height:1.02; letter-spacing:0; text-shadow:none; }
+  .countdown-title{ max-width:900px; color:#4d0e20; font-size:clamp(2.6rem,7vw,6.2rem); font-weight:500; line-height:1.12; letter-spacing:0.04em; text-shadow:none; }
   .countdown-title em{ display:inline-block; color:#8b6416; font-weight:600; font-style:italic; text-shadow:none; transition:text-shadow .3s ease,color .3s ease; }
   .countdown-title:hover em,.countdown-title:focus-within em{ color:#76510e; text-shadow:0 0 5px #fff2c3,0 0 16px rgba(255,204,77,.9),0 0 34px rgba(205,151,49,.58); }
-  .countdown-rule{ width:min(820px,82vw); height:2px; margin:2.8rem auto 1.7rem; background:linear-gradient(90deg,transparent,rgba(178,138,61,.8),transparent); box-shadow:0 0 15px rgba(255,210,102,.55); }
+  .countdown-rule{ width:min(820px,82vw); height:2px; margin:3.2rem auto 2rem; background:linear-gradient(90deg,transparent,rgba(178,138,61,.8),transparent); box-shadow:0 0 15px rgba(255,210,102,.55); }
   .countdown{
     display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:clamp(.35rem,2vw,.9rem); width:min(820px,92vw); margin:0 auto 2.3rem;
     padding:.35rem 0; transition:transform .3s ease;
@@ -540,7 +542,7 @@
     <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
     <div class="bismillah-translit"><strong>In the name of Allah, the Most Gracious, the Most Merciful.</strong></div>
 
-    <p class="blessing-note reveal">With the blessings of<br><strong>Late Ismail Kaka Dasurkar | Late Yunus Kaka Dasurkar<br>Late Sharif Ibrahim Boat</strong></p>
+    <p class="blessing-note reveal">With the blessings of Allah and Our grandparents<br><strong>Late Ismail Kaka Dasurkar | Late Yunus Kaka Dasurkar<br>Late Sharif Ibrahim Boat</strong></p>
 
     <div class="invitation-copy reveal">
       <p class="invitation-hosts">Mrs. Reehana &amp; Mr. Hanif Ismail Dasurkar</p>
@@ -570,6 +572,7 @@
       <div class="reveal-content">
         <span class="date-kicker">Save the date</span>
         <h3>29th November 2026</h3>
+        <p class="date-combined"><strong>29th November 2026&nbsp;&nbsp;|&nbsp;&nbsp;19 Jumada al-Thani 1448 AH</strong></p>
         <p class="date-time"><strong>Sunday&nbsp;&nbsp;|&nbsp;&nbsp;11:00 AM</strong></p>
       </div>
       <canvas id="scratch-canvas"></canvas>
@@ -647,7 +650,7 @@
         <p class="event-date"><strong>Sunday, November 29, 2026</strong></p>
         <p class="event-time">11:00 AM</p>
         <p class="event-followup">Followed by Lunch</p>
-        <p class="event-venue">Venue: Kunbi Bhavan Hall, Kasba, Sangameshwar</p>
+        <p class="event-venue">Venue:Kunbi Bhavan Hall, Near Shastri Bridge, Kond Ambed, Sangameshwar</p>
         <a class="map-btn" href="https://maps.app.goo.gl/CCTGo4Xas5SyF6vP8" target="_blank" rel="noopener noreferrer">Open Google Maps</a>
       </div>
     </div>
@@ -669,7 +672,7 @@
     </div>
     <div class="footer-glow" aria-hidden="true"></div>
     <p class="footer-closing reveal">From the days of our childhood to this major milestone, watching our brother step into his forever is special, and your presence would mean the world to us.</p>
-    <p class="footer-signoff reveal">— Rifa &amp; Asiya</p>
+    <p class="footer-signoff reveal">— Reefa &amp; Asiya</p>
     <p class="footer-blessing reveal" id="footer-blessing">With warmest compliments and heartfelt duas from<br><strong>Dasurkar Family &amp; Friends</strong></p>
     <div class="footer-contacts" aria-label="Contact by phone">
       <a href="tel:+917900197669"><span class="contact-number">7900197669</span></a>
@@ -694,7 +697,7 @@
   invitationAudio.loop = true;
   var audioToggle = document.getElementById('audio-toggle');
   var petalFrame = null;
-  var audioFile = 'Audio/EntryMusic.mp3';
+  var audioFile = 'Audio/Music.mp3';
   var hasAudioSupport = !!(invitationAudio && invitationAudio.canPlayType && invitationAudio.canPlayType('audio/mpeg'));
 
   function resizePetalCanvas(){
@@ -817,7 +820,6 @@
 
   function finishCoverOpen(){
     if(doorScreen.classList.contains('cover-exit')) return;
-    coverOpenButton.hidden = true;
     body.classList.add('cover-opening');
     firstPage.classList.remove('show');
     doorScreen.classList.add('cover-exit');
