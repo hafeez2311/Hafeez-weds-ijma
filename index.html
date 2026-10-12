@@ -140,7 +140,7 @@
     50%{ box-shadow:0 0 34px 14px rgba(112,26,51,0.9), 0 0 90px 40px rgba(112,26,51,0.5); }
   }
 
-  /* ---------- Video cover screen ---------- */
+  /* ---------- Invitation cover screen ---------- */
   #door-screen{
     position:fixed; inset:0; z-index:1000;
     display:flex; align-items:center; justify-content:center; overflow:hidden;
@@ -150,7 +150,6 @@
     transform:translateZ(0);
   }
   #door-screen.cover-exit{ opacity:0; pointer-events:none; }
-  .cover-video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
   .cover-open-button{
     position:absolute; inset:0; z-index:2; display:flex; align-items:flex-end; justify-content:center;
     width:100%; padding:0 1rem max(12vh,4rem); border:0; color:#fffaf0;
@@ -165,17 +164,10 @@
     animation:coverPromptPulse 2s ease-in-out infinite;
   }
   .cover-open-button:focus-visible .cover-open-label{ outline:3px solid #fffaf0; outline-offset:5px; }
-  .cover-open-button:disabled{ cursor:wait; }
   @keyframes coverPromptPulse{
     0%,100%{ transform:translateY(0); box-shadow:0 6px 24px rgba(0,0,0,.32); }
     50%{ transform:translateY(-5px); box-shadow:0 10px 30px rgba(223,177,91,.4); }
   }
-  .cover-error{
-    position:absolute; z-index:3; bottom:1.25rem; left:1rem; right:1rem;
-    margin:0; color:#fffaf0; text-align:center; font-size:1rem;
-    text-shadow:0 2px 8px #1a0518;
-  }
-  .cover-error[hidden]{ display:none; }
   body.locked #main-content{ visibility:hidden; }
   body.cover-opening #main-content{ visibility:visible; }
   #door-screen.hidden{ display:none; }
@@ -184,45 +176,11 @@
   #main-content{ position:relative; z-index:2; isolation:isolate; }
   #main-content.layout-mobile{ width:min(430px, calc(100vw - 12px)); margin-inline:auto; }
   #main-content.layout-desktop{ width:100%; max-width:none; margin-inline:0; }
-  .layout-switch{
-    position:fixed; top:3.85rem; right:.75rem; z-index:1001;
-    display:flex; gap:.2rem; padding:.22rem;
-    border:1px solid rgba(118,87,31,.35); border-radius:999px;
-    background:rgba(255,252,244,.94); box-shadow:0 5px 18px rgba(54,37,12,.14);
-    backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
-  }
-  body.locked .layout-switch{ visibility:hidden; }
-  .layout-switch button{
-    display:grid; place-items:center; width:2rem; height:2rem; padding:0;
-    border:0; border-radius:999px;
-    background:transparent; color:#76571f; font:600 .7rem/1 var(--serif-body);
-    cursor:pointer; transition:background .2s ease,color .2s ease,box-shadow .2s ease;
-  }
-  .layout-switch button svg{ display:block; width:1rem; height:1rem; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
-  .layout-switch button[aria-pressed="true"]{ color:#fffaf0; background:#76571f; box-shadow:0 2px 8px rgba(54,37,12,.2); }
-  .layout-switch button:focus-visible{ outline:2px solid #b28a3d; outline-offset:2px; }
-  html[data-layout-preview="mobile"] #door-screen{
-    left:50%; right:auto; width:min(430px,100vw); transform:translateX(-50%);
-    box-shadow:0 0 0 100vmax rgba(34,27,23,.58);
-  }
-  html[data-layout-preview="desktop"] #door-screen{ left:0; right:0; width:auto; transform:none; box-shadow:none; }
-  html[data-layout-preview="mobile"] #main-content .page{ min-height:100svh; padding:4.5rem .8rem; }
-  html[data-layout-preview="mobile"] #main-content .countdown-title{ font-size:clamp(2rem,8vw,3.3rem); }
-  html[data-layout-preview="mobile"] #main-content .event-cards{ max-width:440px; gap:1.6rem; padding-left:2rem; }
-  html[data-layout-preview="mobile"] #main-content .event-cards::before{ left:.5rem; }
-  html[data-layout-preview="mobile"] #main-content .event-card{ width:100%; max-width:400px; padding:1rem; }
-  html[data-layout-preview="mobile"] #main-content .event-card::after{ left:-1.9rem; }
-  html[data-layout-preview="mobile"] #main-content .event-photo{ aspect-ratio:4/3; }
-  html[data-layout-preview="mobile"] #main-content .venue-map-link img{ aspect-ratio:4/3; }
-  html[data-layout-preview="mobile"] #main-content .countdown{ width:100%; }
-  html[data-layout-preview="mobile"] #main-content .countdown-unit{ padding:.7rem .2rem 1rem; }
-  html[data-layout-preview="mobile"] #main-content .countdown-unit span{ font-size:clamp(1.8rem,12vw,3.3rem); }
-  html[data-layout-preview="mobile"] #main-content .countdown-unit label{ font-size:.5rem; letter-spacing:.08em; }
-  @media (max-width:600px){ .audio-toggle{ top:.55rem; right:.55rem; } .layout-switch{ top:3.55rem; right:.55rem; } }
+  @media (max-width:600px){ .audio-toggle{ top:.55rem; right:.55rem; } }
   .page{
     position:relative; min-height:100vh; width:100%; box-sizing:border-box;
     display:flex; flex-direction:column; align-items:center; justify-content:center;
-    padding:6rem 1.5rem; text-align:center;
+    padding:4.5rem 1.5rem 5rem; text-align:center;
     isolation:auto;
     background:rgba(247,240,227,.66) !important;
   }
@@ -282,17 +240,17 @@
   }
 
   .blessing-note{
-    max-width:520px; font-size:clamp(1.2rem,3vw,1.9rem); font-style:italic; color:var(--ivory);
-    opacity:0.9; line-height:1.6; margin:1rem 0 1.4rem;
+    max-width:760px; font-size:clamp(1rem,2vw,1.45rem); font-style:italic; color:var(--ivory);
+    opacity:0.9; line-height:1.4; margin:1rem auto 1.4rem; text-align:center;
   }
   .blessing-note strong{
     display:block; color:var(--gold); font-style:normal;
-    font-size:clamp(1.4rem,3.4vw,2.15rem); line-height:1.2;
-    margin:0; white-space:nowrap;
+    font-size:clamp(1rem,2.1vw,1.5rem); line-height:1.3;
+    margin:0; text-align:center; white-space:nowrap;
   }
 
   .invitation-copy{
-    display:grid; justify-items:center; gap:.25rem; width:min(760px,100%); margin:.25rem 0 .8rem;
+    display:grid; justify-items:center; gap:.25rem; width:min(760px,100%); margin:.15rem 0 .55rem;
     text-align:center;
   }
   .invitation-copy > *{ margin:0; }
@@ -308,14 +266,22 @@
   }
   .invitation-action{ max-width:640px; color:var(--wax-red-dark); font-size:clamp(1rem,2.2vw,1.35rem); line-height:1.3; }
   .invitation-couple{
-    display:flex; flex-direction:column; align-items:center; gap:.18rem; width:min(680px,100%);
-    margin:.25rem 0; padding:.85rem clamp(1rem,4vw,2rem);
+    display:flex; flex-direction:column; align-items:center; gap:.28rem; width:min(680px,100%);
+    margin:.2rem auto; padding:1.05rem clamp(1rem,4vw,2rem) 1.2rem;
     background:rgba(255,255,255,.3); border-radius:16px;
     box-shadow:inset 0 1px 1px rgba(255,255,255,.72),0 12px 34px rgba(0,0,0,.14);
     backdrop-filter:blur(14px) saturate(165%); -webkit-backdrop-filter:blur(14px) saturate(165%);
     border:1px solid rgba(255,255,255,.58);
   }
+  .invitation-name-wrap{
+    display:flex; flex-direction:column; align-items:center; width:100%;
+    min-height:5.8rem;
+  }
   .invitation-groom,.invitation-bride{ color:var(--wax-red-dark); font-size:clamp(2rem,5.5vw,3.4rem); line-height:1.05; }
+  .invitation-parent{
+    margin:.2rem 0 0; color:var(--wax-red-dark); font-size:clamp(1.1rem,2.5vw,1.55rem); font-weight:600; line-height:1.3; text-align:center;
+  }
+  .invitation-parent strong{ color:var(--invite-gold-dark); margin-right:.22em; }
   .invitation-with{
     display:flex; align-items:center; gap:.7rem; width:min(360px,100%);
     color:var(--invite-gold-dark); font-family:var(--serif-head); font-size:clamp(1rem,2vw,1.25rem); font-style:italic;
@@ -326,11 +292,9 @@
     animation:invitation-line-fade 2.4s ease-in-out infinite;
   }
   .invitation-with::after{ transform:scaleX(-1); }
-  .invitation-daughter{ color:var(--wax-red-dark); font-size:clamp(1.5rem,3vw,1.9rem); font-weight:600; line-height:1.35; }
-  .invitation-daughter strong{ display:inline; margin-right:.25em; color:var(--invite-gold-dark); font-size:clamp(1.7rem,3.4vw,2.15rem); line-height:1.2; }
 
   .scroll-hint{
-    margin-top:3.2rem; font-size:0.78rem; letter-spacing:3px; text-transform:uppercase;
+    margin-top:2.2rem; font-size:0.78rem; letter-spacing:3px; text-transform:uppercase;
     color:var(--gold-dim); animation:bounce 2.2s ease-in-out infinite;
   }
   @keyframes bounce{ 0%,100%{ transform:translateY(0); opacity:0.6; } 50%{ transform:translateY(8px); opacity:1; } }
@@ -348,7 +312,7 @@
     border-radius:80px 18px 80px 18px; overflow:hidden;
     border:1px solid rgba(255,255,255,.78);
     box-shadow:inset 0 1px 1px rgba(255,255,255,.86),0 18px 42px rgba(47,30,18,.2);
-    margin-bottom:1.6rem;
+    margin-bottom:1.1rem;
   }
   .reveal-content{
     position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
@@ -381,7 +345,7 @@
   .event-icon-wrap{ display:none; }
   .event-icon-wrap svg{ width:54px; height:54px; }
 
-  .event-cards{ position:relative; display:grid; gap:2.5rem; max-width:920px; width:100%; margin:2rem auto 0; padding-left:2.5rem; }
+  .event-cards{ position:relative; display:grid; gap:1.8rem; max-width:920px; width:100%; margin:1.4rem auto 0; padding-left:2.5rem; }
   .event-cards::before{
     content:''; position:absolute; top:20px; bottom:20px; left:.65rem; width:2px;
     background:linear-gradient(transparent,#b28a3d 8%,#b28a3d 92%,transparent);
@@ -391,7 +355,7 @@
     position:relative;
     background:linear-gradient(145deg,rgba(255,255,255,.68),rgba(255,250,237,.46) 62%,rgba(237,223,204,.52));
     border:1px solid rgba(255,255,255,.68);
-    border-radius:14px 34px 14px 14px; padding:1.25rem; width:100%; max-width:720px; justify-self:start;
+    border-radius:14px 34px 14px 14px; padding:1rem 1rem 1.1rem; width:100%; max-width:720px; justify-self:start;
     opacity:0; transform:translateY(30px);
     transition:opacity 0.8s ease, transform 0.8s ease, box-shadow 0.35s ease;
     box-shadow:inset 0 1px 1px rgba(255,255,255,.9),0 16px 38px rgba(56,44,30,.2);
@@ -404,8 +368,8 @@
     content:''; position:absolute; top:38px; left:-2.35rem; width:14px; height:14px; border-radius:50%;
     background:var(--forest); border:3px solid var(--invite-gold); box-shadow:0 0 0 7px rgba(178,138,61,.12);
   }
-  .event-photo{ display:block; width:100%; aspect-ratio:16/10; object-fit:cover; object-position:center 42%; border-radius:10px 26px 10px 10px; margin:0 0 1.2rem; box-shadow:0 10px 24px rgba(0,0,0,.22); }
-  .event-venue-section{ display:grid; justify-items:center; gap:.7rem; width:min(920px,100%); margin:4.5rem auto 0; padding:2rem clamp(1rem,4vw,2.5rem); text-align:center; border:2px solid rgba(112,26,51,.82); border-radius:18px; background:rgba(255,250,237,.72); box-shadow:0 12px 30px rgba(74,15,15,.12); }
+  .event-photo{ display:block; width:100%; aspect-ratio:16/10; object-fit:cover; object-position:center 42%; border-radius:10px 26px 10px 10px; margin:0 0 .95rem; box-shadow:0 10px 24px rgba(0,0,0,.22); }
+  .event-venue-section{ display:grid; justify-items:center; gap:.7rem; width:min(920px,100%); margin:3.2rem auto 0; padding:2rem clamp(1rem,4vw,2.5rem); text-align:center; border:2px solid rgba(112,26,51,.82); border-radius:18px; background:rgba(255,250,237,.72); box-shadow:0 12px 30px rgba(74,15,15,.12); }
   .event-venue-section h3{ color:var(--wax-red-dark); font-size:clamp(1.7rem,4vw,2.4rem); }
   .event-venue-section p{ margin:0; color:var(--wax-red-dark); font-family:var(--serif-head); font-size:clamp(1.2rem,3vw,1.7rem); font-weight:500; line-height:1.45; }
   .venue-map-link{ display:block; width:min(760px,100%); margin-top:.5rem; overflow:hidden; border-radius:12px; text-decoration:none; box-shadow:0 16px 36px rgba(45,30,12,.24); }
@@ -489,26 +453,29 @@
     max-width:560px; margin:1.7rem 0 0; color:#76571f; font-size:clamp(1.05rem,2.5vw,1.3rem);
     font-style:italic; line-height:1.6;
   }
+  .footer-signoff{
+    margin:0.8rem 0 0; color:var(--gold-bright); font-size:clamp(1rem,2.2vw,1.25rem);
+    font-weight:600; letter-spacing:0.04em;
+  }
   .footer-mark{ margin-top:1.6rem; font-size:0.75rem; letter-spacing:2px; color:var(--gold-dim); text-transform:uppercase; opacity:0.7; }
   .footer-contacts{
-    display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.75rem;
-    width:min(520px,100%); margin:1.2rem auto 0;
+    display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:.5rem;
+    width:min(520px,100%); margin:1.2rem auto 0; color:#4d0e20;
   }
   .footer-contacts a{
-    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.3rem;
-    min-width:0; padding:.85rem .55rem; border:1px solid rgba(255,255,255,.64); border-radius:14px;
-    background:linear-gradient(145deg,rgba(255,255,255,.62),rgba(255,255,255,.28) 55%,rgba(250,237,224,.46));
-    color:#76571f; text-decoration:none; backdrop-filter:blur(18px) saturate(165%); -webkit-backdrop-filter:blur(18px) saturate(165%);
-    box-shadow:inset 0 1px 1px rgba(255,255,255,.88),0 10px 26px rgba(74,15,15,.14);
-    transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
+    display:inline-flex; align-items:center; justify-content:center; min-width:0;
+    padding:0; border:none; border-radius:0; background:transparent; color:#4d0e20;
+    text-decoration:none; box-shadow:none;
   }
   .footer-contacts a:hover,.footer-contacts a:focus-visible{
-    transform:translateY(-2px); border-color:rgba(255,255,255,.98);
-    box-shadow:inset 0 1px 1px rgba(255,255,255,.98),0 12px 28px rgba(74,15,15,.18);
+    transform:none; border:none; box-shadow:none;
   }
-  .contact-action{ color:#8b6416; font-size:.68rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; }
+  .footer-contacts a + a::before{
+    content:'|'; display:inline-block; margin-right:.65rem; color:#8b6416; font-weight:700;
+  }
+  .contact-action{ display:none; }
   .contact-number{ color:#4d0e20; font-family:Aptos,'Segoe UI',sans-serif; font-size:clamp(1rem,3vw,1.2rem); font-weight:700; font-variant-numeric:tabular-nums; white-space:nowrap; }
-  @media (max-width:360px){ .footer-contacts{ grid-template-columns:1fr; width:min(240px,100%); } }
+  @media (max-width:360px){ .footer-contacts{ gap:.35rem; } }
 
   #celebration-canvas{ position:fixed; inset:0; z-index:1500; pointer-events:none; }
 
@@ -549,21 +516,10 @@
 </head>
 <body class="locked">
 
-<!-- ===================== VIDEO COVER SCREEN ===================== -->
+<!-- ===================== INVITATION COVER SCREEN ===================== -->
 <div id="door-screen" aria-label="Wedding invitation cover">
-  <video class="cover-video" id="cover-video" poster="img/Cover.png" preload="metadata" playsinline muted webkit-playsinline aria-hidden="true"></video>
   <button class="cover-open-button" id="cover-open-button" type="button" aria-label="Tap to open the invitation">
     <span class="cover-open-label">Tap to open</span>
-  </button>
-  <p class="cover-error" id="cover-error" role="alert" hidden></p>
-</div>
-
-<div class="layout-switch" role="group" aria-label="Switch page layout">
-  <button type="button" data-layout="mobile" aria-label="Mobile preview" title="Mobile preview" aria-pressed="false">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6.5" y="2.5" width="11" height="19" rx="2"></rect><path d="M10 18.5h4"></path></svg>
-  </button>
-  <button type="button" data-layout="desktop" aria-label="Desktop preview" title="Desktop preview" aria-pressed="false">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="3.5" width="19" height="14" rx="1.5"></rect><path d="M8 21h8m-4-3.5V21"></path></svg>
   </button>
 </div>
 
@@ -584,17 +540,22 @@
     <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
     <div class="bismillah-translit"><strong>In the name of Allah, the Most Gracious, the Most Merciful.</strong></div>
 
-    <p class="blessing-note reveal">With the blessings of<br><strong>Late Ashiya &amp; Late Ismail Dasurkar</strong><strong>Mrs. Julekha &amp; Late Yunus Dasurkar</strong></p>
+    <p class="blessing-note reveal">With the blessings of <strong>Late Ismail Kaka Dasurkar, Late Yunus Kaka Dasurkar, Late Sharif Hussain Boat</strong></p>
 
     <div class="invitation-copy reveal">
-      <p class="invitation-hosts">Mrs. Reehana &amp; Mr. Hanif Dasurkar</p>
+      <p class="invitation-hosts">Mrs. Reehana &amp; Mr. Hanif Ismail Dasurkar</p>
       <p class="invitation-action">invite you to celebrate the wedding of their beloved son</p>
       <div class="invitation-couple">
-        <h2 class="invitation-groom">Mohammed Hafeez</h2>
+        <div class="invitation-name-wrap groom-wrap">
+          <h2 class="invitation-groom">Mohammed Hafeez</h2>
+          <p class="invitation-parent groom-parent"><strong>S/o</strong> Mrs. Reehana &amp; Mr. Hanif Ismail Dasurkar</p>
+        </div>
         <span class="invitation-with">Weds</span>
-        <h2 class="invitation-bride">Ijma</h2>
+        <div class="invitation-name-wrap bride-wrap">
+          <h2 class="invitation-bride">Ijma</h2>
+          <p class="invitation-parent bride-parent"><strong>D/o</strong> Mrs. Farzan &amp; Mr. Inayat Hussain Gaibi</p>
+        </div>
       </div>
-      <p class="invitation-daughter"><strong>D/o</strong>Mrs. Farzana &amp; Mr. Inayat Gaibi</p>
     </div>
 
     <div class="scroll-hint">Scroll to continue &#8595;</div>
@@ -649,9 +610,9 @@
           </svg>
         </div>
         <h3>Haldi Ceremony</h3>
-        <h3>A golden beginning</h3>
+        <h3>A Golden Beginning</h3>
         <p class="event-date">Friday, November 27, 2026</p>
-        <p class="event-time">4:00 PM Onwards</p>
+        <p class="event-followup">Lunch 02:00 pm Onwards</p>
         <p class="event-venue">Venue: Aziza Manzil, At Post Kalambaste, Sangameshwar</p>
         <a class="map-btn" href="https://maps.app.goo.gl/8CEMJkRSpEpXc49NA" target="_blank" rel="noopener noreferrer">Open Google Maps</a>
       </div>
@@ -675,8 +636,7 @@
         <h3 >Mehendi Ceremony</h3>
         <h3>An evening of celebration</h3>
         <p class="event-date"><strong>Saturday, November 28, 2026</strong></p>
-        <p class="event-time"><strong>7:00 PM Onwards</strong></p>
-        <p class="event-followup">Followed by Dinner</p>
+        <p class="event-followup">Dinner 8:00 pm Onwards</p>
         <p class="event-venue">Venue: Aziza Manzil, At Post Kalambaste, Sangameshwar</p>
         <a class="map-btn" href="https://maps.app.goo.gl/8CEMJkRSpEpXc49NA" target="_blank" rel="noopener noreferrer">Open Google Maps</a>
       </div>
@@ -684,7 +644,7 @@
       <div class="event-card reveal nikah-card">
         <img class="event-photo" src="img/Nikah%20Day.jpeg" alt="Nikah day celebration" loading="lazy">
         <h3>Our Nikah Day</h3>
-        <p class="event-date"><strong></strong>Sunday, November 29, 2026</strong></p>
+        <p class="event-date"><strong>Sunday, November 29, 2026</strong></p>
         <p class="event-time">11:00 AM</p>
         <p class="event-followup">Followed by Lunch</p>
         <p class="event-venue">Venue: Kunbi Bhavan Hall, Kasba, Sangameshwar</p>
@@ -708,10 +668,12 @@
       <button class="calendar-btn" id="add-calendar-btn" type="button">Add to Calendar</button>
     </div>
     <div class="footer-glow" aria-hidden="true"></div>
+    <p class="footer-closing reveal">From the days of our childhood to this major milestone, watching our brother step into his forever is special, and your presence would mean the world to us.</p>
+    <p class="footer-signoff reveal">— Rifa &amp; Asiya</p>
     <p class="footer-blessing reveal" id="footer-blessing">With warmest compliments and heartfelt duas from<br><strong>Dasurkar Family &amp; Friends</strong></p>
     <div class="footer-contacts" aria-label="Contact by phone">
-      <a href="tel:+917900197669"><span class="contact-action">Call</span><span class="contact-number">7900197669</span></a>
-      <a href="tel:+918459605435"><span class="contact-action">Call</span><span class="contact-number">8459605435</span></a>
+      <a href="tel:+917900197669"><span class="contact-number">7900197669</span></a>
+      <a href="tel:+919594499208"><span class="contact-number">9594499208</span></a>
     </div>
   </section>
 
@@ -849,48 +811,13 @@
 
   /* ===================== Cover interaction ===================== */
   var doorScreen = document.getElementById('door-screen');
-  var coverVideo = document.getElementById('cover-video');
   var coverOpenButton = document.getElementById('cover-open-button');
-  var coverError = document.getElementById('cover-error');
   var firstPage = document.getElementById('page1');
   var body = document.body;
-  var coverOpening = false;
-  var coverVideoSources = {
-    desktop: 'img/EntryAnimation1.mp4',
-    mobile: 'img/Entrymobile1.mp4'
-  };
 
-  function updateCoverVideoSource(layoutOverride){
-    var isMobile = layoutOverride === 'mobile' || (!layoutOverride && window.innerWidth <= 600);
-    return isMobile ? coverVideoSources.mobile : coverVideoSources.desktop;
-  }
-
-  var layoutButtons = document.querySelectorAll('.layout-switch [data-layout]');
-  var layoutWasChosen = false;
-  function setLayoutPreview(layout){
-    document.documentElement.dataset.layoutPreview = layout;
-    document.getElementById('main-content').classList.toggle('layout-mobile', layout === 'mobile');
-    document.getElementById('main-content').classList.toggle('layout-desktop', layout === 'desktop');
-    layoutButtons.forEach(function(button){
-      button.setAttribute('aria-pressed', String(button.dataset.layout === layout));
-    });
-  }
-  layoutButtons.forEach(function(button){
-    button.addEventListener('click', function(event){
-      event.stopPropagation();
-      layoutWasChosen = true;
-      setLayoutPreview(button.dataset.layout);
-    });
-  });
-  setLayoutPreview(window.innerWidth <= 600 ? 'mobile' : 'desktop');
-  window.addEventListener('resize', function(){
-    if(!layoutWasChosen) setLayoutPreview(window.innerWidth <= 600 ? 'mobile' : 'desktop');
-  });
-
-  function finishCoverVideo(){
+  function finishCoverOpen(){
     if(doorScreen.classList.contains('cover-exit')) return;
     coverOpenButton.hidden = true;
-    coverError.hidden = true;
     body.classList.add('cover-opening');
     firstPage.classList.remove('show');
     doorScreen.classList.add('cover-exit');
@@ -906,47 +833,8 @@
     }, 950);
   }
 
-  function showCoverFallback(){
-    coverError.textContent = 'Opening the invitation…';
-    coverError.hidden = false;
-    setTimeout(function(){
-      coverOpening = false;
-      finishCoverVideo();
-    }, 180);
-  }
-
   coverOpenButton.addEventListener('click', function(){
-    if(coverOpening) return;
-    coverOpening = true;
-    coverOpenButton.disabled = true;
-    coverError.hidden = true;
-
-    var nextSrc = updateCoverVideoSource(window.innerWidth <= 600 ? 'mobile' : 'desktop');
-    if(coverVideo.getAttribute('src') !== nextSrc){
-      coverVideo.setAttribute('src', nextSrc);
-      coverVideo.load();
-    }
-
-    coverVideo.muted = true;
-    coverVideo.playsInline = true;
-    coverVideo.setAttribute('playsinline', 'true');
-    coverVideo.setAttribute('webkit-playsinline', 'true');
-    coverVideo.currentTime = 0;
-
-    var playPromise = coverVideo.play();
-    if(playPromise && playPromise.then){
-      playPromise.then(function(){
-        coverOpenButton.hidden = true;
-      }).catch(function(){
-        showCoverFallback();
-      });
-    } else {
-      showCoverFallback();
-    }
-  });
-  coverVideo.addEventListener('ended', finishCoverVideo);
-  coverVideo.addEventListener('error', function(){
-    if(coverOpening) showCoverFallback();
+    finishCoverOpen();
   });
 
   /* ===================== Scroll reveal (IntersectionObserver) ===================== */
