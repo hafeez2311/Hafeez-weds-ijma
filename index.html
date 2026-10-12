@@ -267,20 +267,20 @@
   }
   .invitation-action{ max-width:640px; color:var(--wax-red-dark); font-size:clamp(1rem,2.2vw,1.35rem); line-height:1.3; }
   .invitation-couple{
-    display:flex; flex-direction:column; align-items:center; gap:.28rem; width:min(680px,100%);
-    margin:.2rem auto; padding:1.05rem clamp(1rem,4vw,2rem) 1.2rem;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.28rem; width:min(680px,100%);
+    margin:.2rem auto; padding:1.05rem clamp(1rem,4vw,2rem) 1.2rem; text-align:center;
     background:rgba(255,255,255,.3); border-radius:16px;
     box-shadow:inset 0 1px 1px rgba(255,255,255,.72),0 12px 34px rgba(0,0,0,.14);
     backdrop-filter:blur(14px) saturate(165%); -webkit-backdrop-filter:blur(14px) saturate(165%);
     border:1px solid rgba(255,255,255,.58);
   }
   .invitation-name-wrap{
-    display:flex; flex-direction:column; align-items:center; width:100%;
-    min-height:5.8rem;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; width:100%;
+    min-height:5.8rem; text-align:center;
   }
-  .invitation-groom,.invitation-bride{ color:var(--wax-red-dark); font-size:clamp(2rem,5.5vw,3.4rem); line-height:1.05; }
+  .invitation-groom,.invitation-bride{ margin:0; color:var(--wax-red-dark); font-size:clamp(2rem,5.5vw,3.4rem); line-height:1.05; text-align:center; width:100%; }
   .invitation-parent{
-    margin:.2rem 0 0; color:var(--wax-red-dark); font-size:clamp(1.1rem,2.5vw,1.55rem); font-weight:600; line-height:1.3; text-align:center;
+    display:block; width:100%; margin:.2rem 0 0; color:var(--wax-red-dark); font-size:clamp(1.1rem,2.5vw,1.55rem); font-weight:600; line-height:1.3; text-align:center;
   }
   .invitation-parent strong{ color:var(--invite-gold-dark); margin-right:.22em; }
   .invitation-with{
