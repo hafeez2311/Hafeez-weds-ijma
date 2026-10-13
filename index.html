@@ -89,6 +89,19 @@
   .audio-toggle[aria-pressed="false"] .sound-on{ display:none; }
   .audio-toggle[aria-pressed="false"] .sound-off{ display:block; }
   .audio-toggle:focus-visible{ outline:2px solid #b28a3d; outline-offset:3px; }
+  .layout-toggle{
+    position:fixed; top:3.6rem; right:.75rem; z-index:30;
+    display:grid; place-items:center; width:2.8rem; height:2.8rem;
+    border:1px solid rgba(112,26,51,.55); border-radius:50%;
+    color:#701a33; background:rgba(255,252,244,.96);
+    box-shadow:0 4px 16px rgba(54,37,12,.18);
+    backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+    transition:background .2s ease,color .2s ease,transform .2s ease;
+  }
+  .layout-toggle:hover{ transform:translateY(-2px); }
+  .layout-toggle svg{ width:1.2rem; height:1.2rem; stroke:currentColor; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+  .layout-toggle[aria-pressed="true"]{ color:#fffaf0; background:#701a33; }
+  .layout-toggle:focus-visible{ outline:2px solid #b28a3d; outline-offset:3px; }
   #invitation-audio{ display:none; }
 
   /* ---------- ambient moon / lantern scene ---------- */
@@ -176,7 +189,10 @@
   #main-content{ position:relative; z-index:2; isolation:isolate; }
   #main-content.layout-mobile{ width:min(430px, calc(100vw - 12px)); margin-inline:auto; }
   #main-content.layout-desktop{ width:100%; max-width:none; margin-inline:0; }
-  @media (max-width:600px){ .audio-toggle{ top:.55rem; right:.55rem; } }
+  @media (max-width:600px){
+    .audio-toggle{ top:.55rem; right:.55rem; }
+    .layout-toggle{ top:3.35rem; right:.55rem; }
+  }
   .page{
     position:relative; min-height:100vh; width:100%; box-sizing:border-box;
     display:flex; flex-direction:column; align-items:center; justify-content:center;
@@ -231,34 +247,34 @@
 
   /* ---------- Page 1 ---------- */
   .bismillah{
-    font-family:var(--arabic); font-size:clamp(1.8rem,5vw,2.8rem);
-    color:var(--gold-bright); margin-bottom:0.45rem;
+    font-family:var(--arabic); font-size:clamp(1.6rem,4.5vw,2.4rem);
+    color:var(--gold-bright); margin-bottom:0.35rem;
     font-weight:700;
     text-shadow:none;
   }
   .bismillah-translit{
-    font-size:0.8rem; letter-spacing:1.1px; text-transform:uppercase; color:var(--wax-red-dark);
-    margin-bottom:1.15rem; font-weight:700;
+    font-size:0.72rem; letter-spacing:1px; text-transform:uppercase; color:var(--wax-red-dark);
+    margin-bottom:0.95rem; font-weight:700;
   }
 
   .blessing-note{
-    max-width:760px; font-size:clamp(0.96rem,1.75vw,1.22rem); font-style:italic; color:var(--wax-red-dark);
-    opacity:1; line-height:1.38; margin:0.9rem auto 1rem; text-align:center; font-weight:700;
+    max-width:760px; font-size:clamp(0.88rem,1.55vw,1.08rem); font-style:italic; color:var(--wax-red-dark);
+    opacity:1; line-height:1.32; margin:0.8rem auto 0.9rem; text-align:center; font-weight:700;
   }
   .blessing-note strong{
     display:inline; color:var(--wax-red-dark); font-style:normal;
-    font-size:clamp(1.06rem,2.05vw,1.38rem); line-height:1.35;
+    font-size:clamp(0.98rem,1.82vw,1.28rem); line-height:1.3;
     margin:0; text-align:center; white-space:normal; font-weight:800;
   }
 
   .invitation-copy{
-    display:grid; justify-items:center; gap:.16rem; width:min(760px,100%); margin:.1rem 0 .42rem;
+    display:grid; justify-items:center; gap:.14rem; width:min(760px,100%); margin:.08rem 0 .34rem;
     text-align:center; min-width:0;
   }
   .invitation-copy > *{ margin:0; }
-  .invitation-hosts{ color:var(--wax-red-dark); font-family:var(--serif-head); font-size:clamp(1.08rem,2.05vw,1.58rem); font-weight:600; line-height:1.2; margin-bottom:0.12rem; }
+  .invitation-hosts{ color:var(--wax-red-dark); font-family:var(--serif-head); font-size:clamp(1rem,1.9vw,1.4rem); font-weight:600; line-height:1.18; margin-bottom:0.1rem; }
   .invitation-hosts::before{
-    content:''; display:block; width:clamp(50px,8.5vw,76px); height:2px; margin:0 auto .3rem;
+    content:''; display:block; width:clamp(46px,7.8vw,68px); height:2px; margin:0 auto .28rem;
     background:linear-gradient(90deg,transparent,var(--invite-gold),var(--gold-bright),var(--invite-gold),transparent);
     animation:invitation-line-fade 2.4s ease-in-out infinite;
   }
@@ -273,10 +289,10 @@
       -webkit-backdrop-filter:blur(8px) saturate(95%) brightness(1.04);
     }
   }
-  .invitation-action{ max-width:640px; color:var(--wax-red-dark); font-family:var(--serif-body); font-size:clamp(1.08rem,1.9vw,1.35rem); line-height:1.3; font-weight:600; }
+  .invitation-action{ max-width:640px; color:var(--wax-red-dark); font-family:var(--serif-body); font-size:clamp(0.98rem,1.7vw,1.2rem); line-height:1.25; font-weight:600; }
   .invitation-couple{
-    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.18rem; width:min(620px,100%);
-    margin:.15rem auto; padding:0.72rem clamp(0.8rem,3vw,1.2rem) 0.82rem; text-align:center; min-width:0;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.12rem; width:min(580px,100%);
+    margin:.12rem auto; padding:0.54rem clamp(0.7rem,2.8vw,1rem) 0.72rem; text-align:center; min-width:0;
     background:linear-gradient(135deg, rgba(255,255,255,0.006), rgba(255,255,255,0.002) 48%, rgba(138,83,94,0.005) 100%);
     border-radius:24px;
     box-shadow:inset 0 0 0 1px rgba(255,255,255,.018), inset 0 10px 14px rgba(255,255,255,.015), inset 0 -6px 10px rgba(76,22,34,.006), 0 8px 18px rgba(50,18,20,.012);
@@ -298,21 +314,21 @@
   }
   .invitation-name-wrap{
     display:flex; flex-direction:column; align-items:center; justify-content:center; width:100%;
-    min-height:3.9rem; text-align:center; padding:.38rem .62rem; position:relative; z-index:1; min-width:0;
+    min-height:3.3rem; text-align:center; padding:.28rem .5rem; position:relative; z-index:1; min-width:0;
     background:rgba(255,255,255,0.005);
     border:0; border-radius:0;
     box-shadow:none;
     backdrop-filter:none; -webkit-backdrop-filter:none;
   }
-  .invitation-groom,.invitation-bride{ margin:0; color:var(--wax-red-dark); font-family:var(--serif-head); font-size:clamp(1.48rem,2.7vw,2.08rem); line-height:1.08; text-align:center; width:100%; font-weight:700; letter-spacing:0.03em; text-shadow:0 1px 0 rgba(255,255,255,0.18),0 8px 16px rgba(112,26,51,0.10); position:relative; z-index:1; white-space:normal; word-break:keep-all; max-width:100%; }
+  .invitation-groom,.invitation-bride{ margin:0; color:var(--wax-red-dark); font-family:var(--serif-head); font-size:clamp(1.28rem,2.25vw,1.82rem); line-height:1.05; text-align:center; width:100%; font-weight:700; letter-spacing:0.02em; text-shadow:0 1px 0 rgba(255,255,255,0.18),0 8px 16px rgba(112,26,51,0.10); position:relative; z-index:1; white-space:normal; word-break:break-word; max-width:100%; }
   .invitation-groom{ display:block; width:100%; }
   .invitation-parent{
-    display:block; width:100%; margin:.15rem 0 0; color:var(--wax-red-dark); font-family:var(--serif-body); font-size:clamp(0.9rem,1.7vw,1.2rem); font-weight:600; line-height:1.3; text-align:center; white-space:normal; word-break:break-word;
+    display:block; width:100%; margin:.12rem 0 0; color:var(--wax-red-dark); font-family:var(--serif-body); font-size:clamp(0.82rem,1.5vw,1.08rem); font-weight:600; line-height:1.28; text-align:center; white-space:normal; word-break:break-word;
   }
   .invitation-parent strong{ color:var(--invite-gold-dark); margin-right:.22em; }
   .invitation-with{
-    display:flex; align-items:center; gap:.7rem; width:min(360px,100%);
-    color:var(--wax-red-dark); font-family:var(--serif-head); font-size:clamp(1.08rem,2vw,1.22rem); font-style:italic; font-weight:700;
+    display:flex; align-items:center; gap:.7rem; width:min(320px,100%);
+    color:var(--wax-red-dark); font-family:var(--serif-head); font-size:clamp(1rem,1.7vw,1.12rem); font-style:italic; font-weight:700;
   }
   .invitation-with::before,.invitation-with::after{
     content:''; flex:1; height:1px;
@@ -555,8 +571,15 @@
 </div>
 
 <!-- ===================== MAIN CONTENT ===================== -->
-<div id="main-content">
+<div id="main-content" class="layout-desktop">
   <audio id="invitation-audio" preload="none" loop></audio>
+  <button class="layout-toggle" id="layout-toggle" type="button" aria-label="Switch to mobile view" aria-pressed="false" title="Switch to mobile view">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <rect x="3.5" y="6.5" width="11" height="11" rx="2"></rect>
+      <rect x="15.5" y="8.5" width="5" height="7" rx="1.5"></rect>
+      <path d="M7 10h3M7 13h5M7 16h2"></path>
+    </svg>
+  </button>
   <button class="audio-toggle" id="audio-toggle" type="button" aria-label="Play music" aria-pressed="false" title="Play music">
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <path d="M4 10v4h4l5 4V6l-5 4H4z"></path>
@@ -721,9 +744,27 @@
   var invitationAudio = document.getElementById('invitation-audio');
   invitationAudio.loop = true;
   var audioToggle = document.getElementById('audio-toggle');
+  var layoutToggle = document.getElementById('layout-toggle');
+  var mainContent = document.getElementById('main-content');
   var petalFrame = null;
   var audioFile = 'Audio/Mp3Jan.mp3';
   var hasAudioSupport = !!(invitationAudio && invitationAudio.canPlayType && invitationAudio.canPlayType('audio/mpeg'));
+
+  function applyLayoutMode(mode){
+    var nextMode = mode === 'mobile' ? 'mobile' : 'desktop';
+    mainContent.classList.remove('layout-mobile','layout-desktop');
+    mainContent.classList.add('layout-' + nextMode);
+    var isMobile = nextMode === 'mobile';
+    layoutToggle.setAttribute('aria-pressed', String(isMobile));
+    layoutToggle.setAttribute('aria-label', isMobile ? 'Switch to website view' : 'Switch to mobile view');
+    layoutToggle.title = isMobile ? 'Switch to website view' : 'Switch to mobile view';
+  }
+
+  layoutToggle.addEventListener('click', function(){
+    var nextMode = mainContent.classList.contains('layout-mobile') ? 'desktop' : 'mobile';
+    applyLayoutMode(nextMode);
+  });
+  applyLayoutMode('desktop');
 
   function resizePetalCanvas(){
     petalCanvas.width = window.innerWidth * DPR;
