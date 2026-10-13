@@ -17,26 +17,26 @@
 <meta name="twitter:image:alt" content="Wedding invitation artwork for Mohammed Hafeez and Ijma">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Libre+Baskerville:wght@400;700&family=Cormorant+Infant:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --forest-deep:#f7f0e3;
     --forest:#f7f0e3;
     --forest-light:#eddfcc;
-    --gold:#701a33;
-    --gold-bright:#701a33;
-    --gold-dim:#8b3850;
-    --ivory:#701a33;
+    --gold:#4d0e20;
+    --gold-bright:#4d0e20;
+    --gold-dim:#701a33;
+    --ivory:#4d0e20;
     --paper:#f7f0e3;
-    --wax-red:#701a33;
-    --wax-red-dark:#4d0e20;
-    --wax-red-light:#983d58;
+    --wax-red:#4d0e20;
+    --wax-red-dark:#2a0813;
+    --wax-red-light:#701a33;
     --invite-gold:#b28a3d;
     --invite-gold-bright:#e0c477;
     --invite-gold-dark:#76571f;
     --shadow-deep: rgba(0,0,0,0.55);
-    --serif-head:'Playfair Display', 'Cormorant Garamond', Georgia, serif;
-    --serif-body:'Cormorant Garamond', Georgia, serif;
+    --serif-head:'Libre Baskerville', Georgia, serif;
+    --serif-body:'Cormorant Infant', 'Cormorant Garamond', Georgia, serif;
     --arabic:'Amiri', serif;
   }
 
@@ -236,18 +236,18 @@
     text-shadow:0 0 6px rgba(112,26,51,0.18);
   }
   .bismillah-translit{
-    font-size:0.95rem; letter-spacing:2px; text-transform:uppercase; color:var(--gold-dim);
-    margin-bottom:1.8rem;
+    font-size:0.95rem; letter-spacing:2px; text-transform:uppercase; color:var(--wax-red-dark);
+    margin-bottom:1.8rem; font-weight:700;
   }
 
   .blessing-note{
-    max-width:760px; font-size:clamp(1rem,2vw,1.45rem); font-style:italic; color:var(--ivory);
-    opacity:0.9; line-height:1.45; margin:1rem auto 1.4rem; text-align:center;
+    max-width:760px; font-size:clamp(1.15rem,2.3vw,1.7rem); font-style:italic; color:var(--wax-red-dark);
+    opacity:1; line-height:1.5; margin:1rem auto 1.4rem; text-align:center; font-weight:700;
   }
   .blessing-note strong{
-    display:inline; color:var(--gold); font-style:normal;
-    font-size:clamp(1rem,2.1vw,1.5rem); line-height:1.4;
-    margin:0; text-align:center; white-space:normal;
+    display:inline; color:var(--wax-red-dark); font-style:normal;
+    font-size:clamp(1.1rem,2.3vw,1.7rem); line-height:1.4;
+    margin:0; text-align:center; white-space:normal; font-weight:800;
   }
 
   .invitation-copy{
@@ -265,7 +265,7 @@
     0%,100%{ opacity:0; }
     50%{ opacity:1; }
   }
-  .invitation-action{ max-width:640px; color:var(--wax-red-dark); font-size:clamp(1rem,2.2vw,1.35rem); line-height:1.3; }
+  .invitation-action{ max-width:640px; color:var(--wax-red-dark); font-size:clamp(1.1rem,2.4vw,1.5rem); line-height:1.3; font-weight:600; }
   .invitation-couple{
     display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.28rem; width:min(680px,100%);
     margin:.2rem auto; padding:1.05rem clamp(1rem,4vw,2rem) 1.2rem; text-align:center;
@@ -278,14 +278,14 @@
     display:flex; flex-direction:column; align-items:center; justify-content:center; width:100%;
     min-height:5.8rem; text-align:center;
   }
-  .invitation-groom,.invitation-bride{ margin:0; color:var(--wax-red-dark); font-size:clamp(2rem,5.5vw,3.4rem); line-height:1.05; text-align:center; width:100%; }
+  .invitation-groom,.invitation-bride{ margin:0; color:var(--wax-red-dark); font-family:var(--serif-head); font-size:clamp(2.5rem,6vw,4rem); line-height:1.05; text-align:center; width:100%; font-weight:700; letter-spacing:0.02em; text-shadow:0 2px 10px rgba(112,26,51,0.18); }
   .invitation-parent{
-    display:block; width:100%; margin:.2rem 0 0; color:var(--wax-red-dark); font-size:clamp(1.1rem,2.5vw,1.55rem); font-weight:600; line-height:1.3; text-align:center;
+    display:block; width:100%; margin:.2rem 0 0; color:var(--wax-red-dark); font-size:clamp(1.15rem,2.6vw,1.7rem); font-weight:600; line-height:1.3; text-align:center;
   }
   .invitation-parent strong{ color:var(--invite-gold-dark); margin-right:.22em; }
   .invitation-with{
     display:flex; align-items:center; gap:.7rem; width:min(360px,100%);
-    color:var(--invite-gold-dark); font-family:var(--serif-head); font-size:clamp(1rem,2vw,1.25rem); font-style:italic;
+    color:var(--wax-red-dark); font-family:var(--serif-head); font-size:clamp(1.15rem,2.2vw,1.35rem); font-style:italic; font-weight:700;
   }
   .invitation-with::before,.invitation-with::after{
     content:''; flex:1; height:1px;
@@ -305,7 +305,7 @@
     font-size:clamp(1.7rem,4.6vw,2.6rem); color:var(--gold-bright); margin-bottom:0.6rem;
     text-shadow:0 0 24px rgba(112,26,51,0.25);
   }
-  .page-subtitle{ color:var(--ivory); opacity:0.75; font-size:clamp(1.2rem,2.8vw,1.8rem); margin-bottom:2.6rem; font-style:italic; }
+  .page-subtitle{ color:var(--wax-red-dark); opacity:1; font-size:clamp(1.2rem,2.8vw,1.8rem); margin-bottom:2.6rem; font-style:italic; font-weight:600; }
   .page-subtitle .scratch-highlight{ color:var(--gold-bright); font-weight:700; text-shadow:0 0 18px rgba(112,26,51,0.24); }
 
   .scratch-card-wrap{
@@ -327,10 +327,10 @@
     background:rgba(255,245,214,0.12); border:1px solid rgba(255,220,145,0.4);
     color:var(--gold-bright); font-size:.7rem; font-weight:700; letter-spacing:.22em; text-transform:uppercase;
   }
-  .reveal-content p{ margin:0; color:var(--gold-dim); }
+  .reveal-content p{ margin:0; color:var(--wax-red-dark); }
   .reveal-content .date-label{ font-size:1rem; letter-spacing:2px; text-transform:uppercase; }
   .reveal-content .date-time{ font-size:1.18rem; letter-spacing:1px; text-transform:uppercase; }
-  .reveal-content h3{ font-size:clamp(2.2rem,5vw,3.1rem); color:var(--gold-bright); margin:0.55rem 0 0.6rem; line-height:1.1; }
+  .reveal-content h3{ font-size:clamp(2.2rem,5vw,3.1rem); color:var(--wax-red-dark); margin:0.55rem 0 0.6rem; line-height:1.1; }
   #scratch-canvas{ position:absolute; inset:0; width:100%; height:100%; touch-action:none; cursor:grab; }
   .scratch-hint{ font-size:0.9rem; color:var(--invite-gold-dark); letter-spacing:.08em; opacity:1; font-weight:600; }
   .page-ivory .page-subtitle{ color:var(--invite-gold-dark); opacity:1; }
@@ -451,11 +451,11 @@
   .footer-blessing.in-view{ opacity:1; transform:translateY(0); }
   .footer-blessing strong{ font-family:var(--serif-head); font-size:1.2em; }
   .footer-closing{
-    max-width:560px; margin:1.7rem 0 0; color:#76571f; font-size:clamp(1.05rem,2.5vw,1.3rem);
-    font-style:italic; line-height:1.6;
+    max-width:560px; margin:1.7rem 0 0; color:var(--wax-red-dark); font-size:clamp(1.05rem,2.5vw,1.3rem);
+    font-style:italic; line-height:1.6; font-weight:600;
   }
   .footer-closing-name{
-    color:var(--wax-red-dark); font-weight:700; font-style:normal; text-decoration:underline; text-underline-offset:2px;
+    color:var(--wax-red-dark); font-family:var(--serif-head); font-size:0.9em; font-weight:700; font-style:normal; text-decoration:underline; text-underline-offset:2px;
   }
   .footer-signoff{
     margin:0.8rem 0 0; color:var(--gold-bright); font-size:clamp(1rem,2.2vw,1.25rem);
@@ -544,7 +544,7 @@
     <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
     <div class="bismillah-translit"><strong>In the name of Allah, the Most Gracious, the Most Merciful.</strong></div>
 
-    <p class="blessing-note reveal">With the blessings of Allah and Our grandparents<br><strong>Late Ismail Kaka Dasurkar | Late Yunus Kaka Dasurkar<br>Late Sharif Ibrahim Boat</strong></p>
+    <p class="blessing-note reveal">With the blessings of Allah and loving grandparents of the groom<br><strong>Late Ismail Kaka Dasurkar | Late Yunus Kaka Dasurkar</strong></p>
 
     <div class="invitation-copy reveal">
       <p class="invitation-hosts">Mrs. Reehana &amp; Mr. Hanif Ismail Dasurkar</p>
