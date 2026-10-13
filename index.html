@@ -63,6 +63,9 @@
   ::selection{ background:var(--gold); color:var(--forest-deep); }
 
   h1,h2,h3{ font-family:var(--serif-head); font-weight:600; margin:0; }
+  body{
+    font-size:15px;
+  }
 
   a{ color:inherit; }
 
@@ -182,8 +185,8 @@
   }
   .page{
     position:relative; min-height:100vh; width:100%; box-sizing:border-box;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    padding:4.5rem 1.5rem 5rem; text-align:center;
+    display:flex; flex-direction:column; align-items:center; justify-content:flex-start;
+    padding:2.4rem 1.5rem 5rem; text-align:center;
     isolation:auto;
     background:rgba(247,240,227,.52) !important;
   }
@@ -234,32 +237,36 @@
 
   /* ---------- Page 1 ---------- */
   .bismillah{
-    font-family:var(--arabic); font-size:clamp(2.1rem,4vw,3rem);
-    color:var(--gold-bright); margin-bottom:0.35rem;
+    font-family:var(--arabic); font-size:clamp(1.7rem,3vw,2.4rem);
+    color:var(--gold-bright); margin:0.2rem 0 0.7rem;
     font-weight:700;
     text-shadow:none;
   }
   .bismillah-translit{
-    font-size:0.76rem; letter-spacing:0.8px; text-transform:uppercase; color:var(--wax-red-dark);
-    margin-bottom:0.95rem; font-weight:700;
+    font-size:0.68rem; letter-spacing:0.8px; text-transform:uppercase; color:var(--wax-red-dark);
+    margin:0.45rem 0 1.45rem; font-weight:700;
   }
 
   .blessing-note{
-    max-width:760px; font-size:clamp(1rem,1.6vw,1.2rem); font-style:italic; color:var(--wax-red-dark);
-    opacity:1; line-height:1.36; margin:0.9rem auto 1rem; text-align:center; font-weight:700;
+    max-width:760px; font-size:clamp(0.9rem,1.35vw,1.04rem); font-style:italic; color:var(--wax-red-dark);
+    opacity:1; line-height:1.28; margin:0 auto 1.6rem; text-align:center; font-weight:700;
   }
   .blessing-note strong{
     display:inline; color:var(--wax-red-dark); font-style:normal;
-    font-size:clamp(1.1rem,1.9vw,1.45rem); line-height:1.32;
+    font-size:clamp(0.98rem,1.6vw,1.18rem); line-height:1.26;
     margin:0; text-align:center; white-space:normal; font-weight:800;
+  }
+  .blessing-note .grandparents-names{
+    display:block; margin-top:.55rem; color:var(--wax-red-dark); font-family:var(--serif-head);
+    font-size:clamp(0.98rem,1.8vw,1.25rem); font-weight:600; line-height:1.15;
   }
 
   .invitation-copy{
-    display:grid; justify-items:center; gap:.12rem; width:min(760px,100%); margin:.12rem 0 .4rem;
+    display:grid; justify-items:center; gap:.3rem; width:min(760px,100%); margin:0 0 1.5rem;
     text-align:center; min-width:0;
   }
   .invitation-copy > *{ margin:0; }
-  .invitation-hosts{ color:var(--wax-red-dark); font-family:var(--serif-head); font-size:clamp(1.1rem,2vw,1.5rem); font-weight:600; line-height:1.18; margin-bottom:0.1rem; }
+  .invitation-hosts{ color:var(--wax-red-dark); font-family:var(--serif-head); font-size:clamp(0.98rem,1.8vw,1.25rem); font-weight:600; line-height:1.15; margin:0 0 0.14rem; }
   .invitation-hosts::before{
     content:''; display:block; width:clamp(46px,7.8vw,68px); height:2px; margin:0 auto .28rem;
     background:linear-gradient(90deg,transparent,var(--invite-gold),var(--gold-bright),var(--invite-gold),transparent);
@@ -276,10 +283,10 @@
       -webkit-backdrop-filter:blur(8px) saturate(95%) brightness(1.04);
     }
   }
-  .invitation-action{ max-width:640px; color:var(--wax-red-dark); font-family:var(--serif-body); font-size:clamp(1.1rem,1.8vw,1.3rem); line-height:1.25; font-weight:600; }
+  .invitation-action{ max-width:640px; color:var(--wax-red-dark); font-family:var(--serif-body); font-size:clamp(1rem,1.5vw,1.12rem); line-height:1.18; font-weight:600; margin:0; }
   .invitation-couple{
-    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.16rem; width:min(600px,100%);
-    margin:.12rem auto; padding:0.6rem clamp(0.8rem,2.8vw,1.1rem) 0.8rem; text-align:center; min-width:0;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.22rem; width:min(570px,100%);
+    margin:1rem auto 0; padding:0.85rem clamp(0.7rem,2.5vw,0.9rem) 1.05rem; text-align:center; min-width:0;
     background:linear-gradient(135deg, rgba(255,255,255,0.006), rgba(255,255,255,0.002) 48%, rgba(138,83,94,0.005) 100%);
     border-radius:24px;
     box-shadow:inset 0 0 0 1px rgba(255,255,255,.018), inset 0 10px 14px rgba(255,255,255,.015), inset 0 -6px 10px rgba(76,22,34,.006), 0 8px 18px rgba(50,18,20,.012);
@@ -301,21 +308,21 @@
   }
   .invitation-name-wrap{
     display:flex; flex-direction:column; align-items:center; justify-content:center; width:100%;
-    min-height:3.2rem; text-align:center; padding:.3rem .5rem; position:relative; z-index:1; min-width:0;
+    min-height:2.9rem; text-align:center; padding:.28rem .45rem; position:relative; z-index:1; min-width:0;
     background:rgba(255,255,255,0.005);
     border:0; border-radius:0;
     box-shadow:none;
     backdrop-filter:none; -webkit-backdrop-filter:none;
   }
-  .invitation-groom,.invitation-bride{ margin:0; color:var(--wax-red-dark); font-family:var(--serif-head); font-size:clamp(1.8rem,2.8vw,2.8rem); line-height:1.04; text-align:center; width:100%; font-weight:700; letter-spacing:0.02em; text-shadow:0 1px 0 rgba(255,255,255,0.18),0 8px 16px rgba(112,26,51,0.10); position:relative; z-index:1; white-space:normal; word-break:break-word; max-width:100%; }
+  .invitation-groom,.invitation-bride{ margin:0; color:var(--wax-red-dark); font-family:var(--serif-head); font-size:clamp(1.45rem,2.3vw,2rem); line-height:1.04; text-align:center; width:100%; font-weight:700; letter-spacing:0.02em; text-shadow:0 1px 0 rgba(255,255,255,0.18),0 8px 16px rgba(112,26,51,0.10); position:relative; z-index:1; white-space:normal; word-break:break-word; max-width:100%; }
   .invitation-groom{ display:block; width:100%; }
   .invitation-parent{
-    display:block; width:100%; margin:.12rem 0 0; color:var(--wax-red-dark); font-family:var(--serif-body); font-size:clamp(0.9rem,1.5vw,1.08rem); font-weight:600; line-height:1.25; text-align:center; white-space:normal; word-break:break-word;
+    display:block; width:100%; margin:.08rem 0 0; color:var(--wax-red-dark); font-family:var(--serif-body); font-size:clamp(0.95rem,1.5vw,2rem); font-weight:600; line-height:1.2; text-align:center; white-space:normal; word-break:break-word;
   }
   .invitation-parent strong{ color:var(--invite-gold-dark); margin-right:.22em; }
   .invitation-with{
-    display:flex; align-items:center; gap:.7rem; width:min(300px,100%);
-    color:var(--wax-red-dark); font-family:var(--serif-head); font-size:clamp(1rem,1.8vw,1.2rem); font-style:italic; font-weight:700;
+    display:flex; align-items:center; gap:.55rem; width:min(270px,100%);
+    color:var(--wax-red-dark); font-family:var(--serif-head); font-size:clamp(0.86rem,1.5vw,1.02rem); font-style:italic; font-weight:700;
   }
   .invitation-with::before,.invitation-with::after{
     content:''; flex:1; height:1px;
@@ -332,10 +339,10 @@
 
   /* ---------- Page 2 : scratch card ---------- */
   .page-title{
-    font-size:clamp(2.2rem,4.8vw,3.2rem); color:var(--gold-bright); margin-bottom:0.7rem;
+    font-size:clamp(1.9rem,4vw,2.8rem); color:var(--gold-bright); margin-bottom:0.7rem;
     text-shadow:none;
   }
-  .page-subtitle{ color:var(--wax-red-dark); opacity:1; font-size:clamp(1.4rem,2.9vw,2rem); margin-bottom:2.6rem; font-style:italic; font-weight:600; }
+  .page-subtitle{ color:var(--wax-red-dark); opacity:1; font-size:clamp(1.2rem,2.4vw,1.7rem); margin-bottom:2.4rem; font-style:italic; font-weight:600; }
   .page-subtitle .scratch-highlight{ color:var(--gold-bright); font-weight:700; text-shadow:none; }
 
   .scratch-card-wrap{
@@ -355,12 +362,12 @@
   .date-kicker{
     display:inline-block; margin-bottom:.6rem; padding:.4rem .9rem; border-radius:999px;
     background:rgba(255,245,214,0.12); border:1px solid rgba(255,220,145,0.4);
-    color:var(--gold-bright); font-size:.7rem; font-weight:700; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--gold-bright); font-size:.64rem; font-weight:700; letter-spacing:.22em; text-transform:uppercase;
   }
   .reveal-content p{ margin:0; color:var(--wax-red-dark); }
-  .reveal-content .date-label{ font-size:1rem; letter-spacing:2px; text-transform:uppercase; }
-  .reveal-content .date-time{ font-size:1.18rem; letter-spacing:1px; text-transform:uppercase; }
-  .reveal-content h3{ font-size:clamp(2.2rem,5vw,3.1rem); color:var(--wax-red-dark); margin:0.55rem 0 0.6rem; line-height:1.1; }
+  .reveal-content .date-label{ font-size:0.92rem; letter-spacing:2px; text-transform:uppercase; }
+  .reveal-content .date-time{ font-size:1.04rem; letter-spacing:1px; text-transform:uppercase; }
+  .reveal-content h3{ font-size:clamp(1.8rem,4vw,2.5rem); color:var(--wax-red-dark); margin:0.5rem 0 0.5rem; line-height:1.08; }
   #scratch-canvas{ position:absolute; inset:0; width:100%; height:100%; touch-action:none; cursor:grab; }
   .scratch-hint{ font-size:0.9rem; color:var(--invite-gold-dark); letter-spacing:.08em; opacity:1; font-weight:600; }
   .page-ivory .page-subtitle{ color:var(--invite-gold-dark); opacity:1; }
@@ -406,15 +413,15 @@
   .venue-map-link{ display:block; width:min(760px,100%); margin-top:.5rem; overflow:hidden; border-radius:12px; text-decoration:none; box-shadow:0 16px 36px rgba(45,30,12,.24); }
   .venue-map-link img{ display:block; width:100%; aspect-ratio:16/9; object-fit:cover; }
   .venue-map-link span{ display:block; padding:.9rem 1.1rem; background:rgba(255,250,237,.94); color:#76571f; font-weight:600; }
-  .event-card h3{ color:var(--wax-red-dark); font-size:1.5rem; margin-bottom:0.9rem; }
-  .event-date{ font-size:1.25rem; color:var(--wax-red-dark); margin:0.2rem 0; font-weight:700; }
-  .event-time{ font-size:1.2rem; color:var(--wax-red-dark); margin:0.2rem 0 0.8rem; font-weight:700; }
+  .event-card h3{ color:var(--wax-red-dark); font-size:1.28rem; margin-bottom:0.75rem; }
+  .event-date{ font-size:1.08rem; color:var(--wax-red-dark); margin:0.2rem 0; font-weight:700; }
+  .event-time{ font-size:1.04rem; color:var(--wax-red-dark); margin:0.2rem 0 0.7rem; font-weight:700; }
   .nikah-card .event-time{ margin-bottom:.25rem; }
   .event-followup{
     display:inline-block; margin:0 auto .7rem; padding:.35rem .8rem; border:1px solid rgba(178,138,61,.42);
-    border-radius:999px; background:rgba(255,255,255,.55); color:var(--wax-red-dark); font-size:1.1rem; font-weight:700;
+    border-radius:999px; background:rgba(255,255,255,.55); color:var(--wax-red-dark); font-size:0.98rem; font-weight:700;
   }
-  .event-venue{ font-size:1.1rem; color:var(--wax-red-dark); opacity:1; margin:0 0 1.3rem; line-height:1.5; font-weight:600; }
+  .event-venue{ font-size:0.98rem; color:var(--wax-red-dark); opacity:1; margin:0 0 1.1rem; line-height:1.5; font-weight:600; }
   .map-btn{
     display:inline-block; padding:0.65rem 1.3rem; border-radius:30px;
     border:1px solid #b28a3d; color:#29483b; text-decoration:none;
@@ -573,19 +580,19 @@
     <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
     <div class="bismillah-translit"><strong>In the name of Allah, the Most Gracious, the Most Merciful.</strong></div>
 
-    <p class="blessing-note reveal">With the blessings of Allah and loving grandparents of the groom<br><strong>Late Ismail Kaka Dasurkar | Late Yunus Kaka Dasurkar</strong></p>
+    <p class="blessing-note reveal">With the blessings of Allah and loving grandparents of the groom<br><strong class="grandparents-names">Late Ismail Kaka Dasurkar | Late Yunus Kaka Dasurkar</strong></p>
 
     <div class="invitation-copy reveal">
-      <p class="invitation-hosts">Mrs. Reehana &amp; Mr. Hanif Ismail Dasurkar</p>
-      <p class="invitation-action">invite you to celebrate the wedding of their beloved son</p>
+      <p class="invitation-hosts">Mrs. Reehana &amp; Mr. Hanif Ismail Dasurkar<br></p>
+      <p class="invitation-action"><br>invite you to celebrate the wedding of their beloved son</p>
       <div class="invitation-couple">
         <div class="invitation-name-wrap groom-wrap">
-          <h2 class="invitation-groom">Mohammed Hafeez</h2>
+          <h2 class="invitation-groom"><br>Mohammed Hafeez</h2>
         </div>
         <span class="invitation-with">Weds</span>
         <div class="invitation-name-wrap bride-wrap">
           <h2 class="invitation-bride">Ijma</h2>
-          <p class="invitation-parent bride-parent"><strong>D/o</strong> Mrs. Farzana &amp; Mr. Inayat Hussain Gaibi</p>
+          <p class="invitation-parent bride-parent"><br><strong>D/o</strong> Mrs. Farzana &amp; Mr. Inayat Hussain Gaibi</p>
         </div>
       </div>
     </div>
