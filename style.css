@@ -324,7 +324,12 @@ body {
     margin: 30px 0;
     flex-wrap: wrap;
 }
-
+/* Countdown Kicker */
+.countdown-kicker {
+  display: inline-block;        /* line only as wide as the text */
+  padding-bottom: 10px;         /* space between text and line */
+  border-bottom: 2px solid #c9a24a;   /* gold underline */
+}
 .timer-box {
     background: linear-gradient(145deg, rgba(30, 6, 26, 0.9), rgba(60, 12, 50, 0.9));
     border: 1px solid var(--gold-primary);
