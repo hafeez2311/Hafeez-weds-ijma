@@ -17,7 +17,7 @@
 <meta name="twitter:image:alt" content="Wedding invitation artwork for Mohammed Hafeez and Ijma">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Libre+Baskerville:wght@400;700&family=Cormorant+Infant:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
 <style>
   :root{
     --forest-deep:#f7f0e3;
@@ -35,8 +35,8 @@
     --invite-gold-bright:#e0c477;
     --invite-gold-dark:#76571f;
     --shadow-deep: rgba(0,0,0,0.55);
-    --serif-head:'Libre Baskerville', Georgia, serif;
-    --serif-body:'Cormorant Infant', 'Cormorant Garamond', Georgia, serif;
+    --serif-head:'Cinzel', Georgia, serif;
+    --serif-body:'Cormorant Garamond', Georgia, serif;
     --arabic:'Amiri', serif;
   }
 
@@ -182,11 +182,12 @@
     display:flex; flex-direction:column; align-items:center; justify-content:center;
     padding:4.5rem 1.5rem 5rem; text-align:center;
     isolation:auto;
-    background:rgba(247,240,227,.66) !important;
+    background:rgba(247,240,227,.52) !important;
   }
   .page::after{
     content:''; position:absolute; inset:12px; z-index:3;
-    border:2px solid rgba(112,26,51,.85); pointer-events:none;
+    border:1px solid rgba(112,26,51,.38); pointer-events:none;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.18);
   }
 
   .page > *{ position:relative; z-index:1; }
@@ -233,7 +234,7 @@
     font-family:var(--arabic); font-size:clamp(2.2rem,7vw,3.5rem);
     color:var(--gold-bright); margin-bottom:0.6rem;
     font-weight:700;
-    text-shadow:0 0 6px rgba(112,26,51,0.18);
+    text-shadow:none;
   }
   .bismillah-translit{
     font-size:0.95rem; letter-spacing:2px; text-transform:uppercase; color:var(--wax-red-dark);
@@ -246,7 +247,7 @@
   }
   .blessing-note strong{
     display:inline; color:var(--wax-red-dark); font-style:normal;
-    font-size:clamp(1.1rem,2.3vw,1.7rem); line-height:1.4;
+    font-size:clamp(1.4rem,3vw,2.2rem); line-height:1.35;
     margin:0; text-align:center; white-space:normal; font-weight:800;
   }
 
@@ -255,7 +256,7 @@
     text-align:center;
   }
   .invitation-copy > *{ margin:0; }
-  .invitation-hosts{ color:var(--wax-red-dark); font-size:clamp(1.25rem,3vw,2rem); font-weight:600; line-height:1.2; }
+  .invitation-hosts{ color:var(--wax-red-dark); font-family:var(--serif-head); font-size:clamp(1.25rem,3vw,2rem); font-weight:600; line-height:1.2; }
   .invitation-hosts::before{
     content:''; display:block; width:clamp(64px,12vw,104px); height:2px; margin:0 auto .45rem;
     background:linear-gradient(90deg,transparent,var(--invite-gold),var(--gold-bright),var(--invite-gold),transparent);
@@ -265,27 +266,46 @@
     0%,100%{ opacity:0; }
     50%{ opacity:1; }
   }
-  .invitation-action{ max-width:640px; color:var(--wax-red-dark); font-size:clamp(1.1rem,2.4vw,1.5rem); line-height:1.3; font-weight:600; }
+  .invitation-action{ max-width:640px; color:var(--wax-red-dark); font-family:var(--serif-body); font-size:clamp(1.2rem,2.5vw,1.7rem); line-height:1.3; font-weight:600; }
   .invitation-couple{
     display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.28rem; width:min(680px,100%);
     margin:.2rem auto; padding:1.05rem clamp(1rem,4vw,2rem) 1.2rem; text-align:center;
-    background:rgba(255,255,255,.3); border-radius:16px;
-    box-shadow:inset 0 1px 1px rgba(255,255,255,.72),0 12px 34px rgba(0,0,0,.14);
-    backdrop-filter:blur(14px) saturate(165%); -webkit-backdrop-filter:blur(14px) saturate(165%);
-    border:1px solid rgba(255,255,255,.58);
+    background:linear-gradient(135deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005) 48%, rgba(138,83,94,0.01) 100%);
+    border-radius:24px;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.03), inset 0 8px 14px rgba(255,255,255,.03), inset 0 -6px 10px rgba(76,22,34,.01), 0 8px 18px rgba(50,18,20,.02);
+    backdrop-filter:blur(30px) saturate(96%) brightness(1.08); -webkit-backdrop-filter:blur(30px) saturate(96%) brightness(1.08);
+    border:1px solid rgba(255,255,255,.04);
+    position:relative; overflow:hidden;
+  }
+  .invitation-couple::before{
+    content:''; position:absolute; inset:1px; border-radius:23px; background:linear-gradient(120deg, rgba(255,255,255,0.04), rgba(255,255,255,0.005) 22%, rgba(255,255,255,0.02) 35%, rgba(255,255,255,0.002) 60%, rgba(255,255,255,0.04) 100%);
+    pointer-events:none;
+    opacity:.9;
+    box-shadow:inset 0 0 12px rgba(255,255,255,.02), inset 0 0 0 1px rgba(255,255,255,.01);
+  }
+  .invitation-couple::after{
+    content:''; position:absolute; inset:-12% -8% auto auto; width:32%; height:32%; border-radius:50%;
+    background:radial-gradient(circle, rgba(255,255,255,0.08), rgba(255,255,255,0) 70%);
+    pointer-events:none; filter:blur(18px);
+    opacity:.6;
   }
   .invitation-name-wrap{
     display:flex; flex-direction:column; align-items:center; justify-content:center; width:100%;
-    min-height:5.8rem; text-align:center;
+    min-height:5.8rem; text-align:center; padding:.7rem 1.1rem; position:relative; z-index:1;
+    background:rgba(255,255,255,0.01);
+    border:0; border-radius:0;
+    box-shadow:none;
+    backdrop-filter:none; -webkit-backdrop-filter:none;
   }
-  .invitation-groom,.invitation-bride{ margin:0; color:var(--wax-red-dark); font-family:var(--serif-head); font-size:clamp(2.5rem,6vw,4rem); line-height:1.05; text-align:center; width:100%; font-weight:700; letter-spacing:0.02em; text-shadow:0 2px 10px rgba(112,26,51,0.18); }
+  .invitation-groom,.invitation-bride{ margin:0; color:var(--wax-red-dark); font-family:var(--serif-head); font-size:clamp(2.7rem,6.4vw,4.4rem); line-height:1.05; text-align:center; width:100%; font-weight:700; letter-spacing:0.04em; text-shadow:0 1px 0 rgba(255,255,255,0.18),0 8px 16px rgba(112,26,51,0.10); position:relative; z-index:1; white-space:nowrap; max-width:100%; }
+  .invitation-groom{ display:block; width:100%; }
   .invitation-parent{
-    display:block; width:100%; margin:.2rem 0 0; color:var(--wax-red-dark); font-size:clamp(1.15rem,2.6vw,1.7rem); font-weight:600; line-height:1.3; text-align:center;
+    display:block; width:100%; margin:.2rem 0 0; color:var(--wax-red-dark); font-family:var(--serif-body); font-size:clamp(1.2rem,2.8vw,1.8rem); font-weight:600; line-height:1.3; text-align:center;
   }
   .invitation-parent strong{ color:var(--invite-gold-dark); margin-right:.22em; }
   .invitation-with{
     display:flex; align-items:center; gap:.7rem; width:min(360px,100%);
-    color:var(--wax-red-dark); font-family:var(--serif-head); font-size:clamp(1.15rem,2.2vw,1.35rem); font-style:italic; font-weight:700;
+    color:var(--wax-red-dark); font-family:var(--serif-head); font-size:clamp(1.25rem,2.4vw,1.45rem); font-style:italic; font-weight:700;
   }
   .invitation-with::before,.invitation-with::after{
     content:''; flex:1; height:1px;
@@ -303,23 +323,23 @@
   /* ---------- Page 2 : scratch card ---------- */
   .page-title{
     font-size:clamp(1.7rem,4.6vw,2.6rem); color:var(--gold-bright); margin-bottom:0.6rem;
-    text-shadow:0 0 24px rgba(112,26,51,0.25);
+    text-shadow:none;
   }
   .page-subtitle{ color:var(--wax-red-dark); opacity:1; font-size:clamp(1.2rem,2.8vw,1.8rem); margin-bottom:2.6rem; font-style:italic; font-weight:600; }
-  .page-subtitle .scratch-highlight{ color:var(--gold-bright); font-weight:700; text-shadow:0 0 18px rgba(112,26,51,0.24); }
+  .page-subtitle .scratch-highlight{ color:var(--gold-bright); font-weight:700; text-shadow:none; }
 
   .scratch-card-wrap{
     position:relative; width:min(90vw,420px); height:220px;
     border-radius:80px 18px 80px 18px; overflow:hidden;
-    border:1px solid rgba(255,255,255,.78);
-    box-shadow:inset 0 1px 1px rgba(255,255,255,.86),0 18px 42px rgba(47,30,18,.2);
+    border:1px solid rgba(255,255,255,.58);
+    box-shadow:inset 0 1px 1px rgba(255,255,255,.58),0 12px 28px rgba(47,30,18,.12);
     margin-bottom:1.1rem;
   }
   .reveal-content{
     position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
-    background:linear-gradient(145deg,rgba(255,255,255,.68),rgba(255,250,237,.44) 58%,rgba(237,223,204,.52));
-    backdrop-filter:blur(20px) saturate(165%); -webkit-backdrop-filter:blur(20px) saturate(165%);
-    box-shadow:inset 0 1px 1px rgba(255,255,255,.92);
+    background:linear-gradient(145deg,rgba(255,255,255,.42),rgba(255,250,237,.28) 58%,rgba(237,223,204,.32));
+    backdrop-filter:blur(16px) saturate(150%); -webkit-backdrop-filter:blur(16px) saturate(150%);
+    box-shadow:inset 0 1px 1px rgba(255,255,255,.72);
     padding:1rem 1.3rem;
   }
   .date-kicker{
@@ -354,13 +374,13 @@
   }
   .event-card{
     position:relative;
-    background:linear-gradient(145deg,rgba(255,255,255,.68),rgba(255,250,237,.46) 62%,rgba(237,223,204,.52));
-    border:1px solid rgba(255,255,255,.68);
+    background:linear-gradient(145deg,rgba(255,255,255,.42),rgba(255,250,237,.26) 62%,rgba(237,223,204,.35));
+    border:1px solid rgba(255,255,255,.42);
     border-radius:14px 34px 14px 14px; padding:1rem 1rem 1.1rem; width:100%; max-width:720px; justify-self:start;
     opacity:0; transform:translateY(30px);
     transition:opacity 0.8s ease, transform 0.8s ease, box-shadow 0.35s ease;
-    box-shadow:inset 0 1px 1px rgba(255,255,255,.9),0 16px 38px rgba(56,44,30,.2);
-    backdrop-filter:blur(20px) saturate(165%); -webkit-backdrop-filter:blur(20px) saturate(165%);
+    box-shadow:inset 0 1px 1px rgba(255,255,255,.72),0 12px 26px rgba(56,44,30,.14);
+    backdrop-filter:blur(14px) saturate(150%); -webkit-backdrop-filter:blur(14px) saturate(150%);
   }
   .event-card.haldi-card{ border:1.5px solid rgba(178,138,61,.8); }
   .event-card.in-view{ opacity:1; transform:translateY(0); }
@@ -370,21 +390,21 @@
     background:var(--forest); border:3px solid var(--invite-gold); box-shadow:0 0 0 7px rgba(178,138,61,.12);
   }
   .event-photo{ display:block; width:100%; aspect-ratio:16/10; object-fit:cover; object-position:center 42%; border-radius:10px 26px 10px 10px; margin:0 0 .95rem; box-shadow:0 10px 24px rgba(0,0,0,.22); }
-  .event-venue-section{ display:grid; justify-items:center; gap:.7rem; width:min(920px,100%); margin:3.2rem auto 0; padding:2rem clamp(1rem,4vw,2.5rem); text-align:center; border:2px solid rgba(112,26,51,.82); border-radius:18px; background:rgba(255,250,237,.72); box-shadow:0 12px 30px rgba(74,15,15,.12); }
+  .event-venue-section{ display:grid; justify-items:center; gap:.7rem; width:min(920px,100%); margin:3.2rem auto 0; padding:2rem clamp(1rem,4vw,2.5rem); text-align:center; border:1px solid rgba(112,26,51,.35); border-radius:18px; background:rgba(255,250,237,.48); box-shadow:0 10px 22px rgba(74,15,15,.08); }
   .event-venue-section h3{ color:var(--wax-red-dark); font-size:clamp(1.7rem,4vw,2.4rem); }
   .event-venue-section p{ margin:0; color:var(--wax-red-dark); font-family:var(--serif-head); font-size:clamp(1.2rem,3vw,1.7rem); font-weight:500; line-height:1.45; }
   .venue-map-link{ display:block; width:min(760px,100%); margin-top:.5rem; overflow:hidden; border-radius:12px; text-decoration:none; box-shadow:0 16px 36px rgba(45,30,12,.24); }
   .venue-map-link img{ display:block; width:100%; aspect-ratio:16/9; object-fit:cover; }
   .venue-map-link span{ display:block; padding:.9rem 1.1rem; background:rgba(255,250,237,.94); color:#76571f; font-weight:600; }
-  .event-card h3{ color:#29483b; font-size:1.5rem; margin-bottom:0.9rem; }
-  .event-date{ font-size:1.25rem; color:#3d4b43; margin:0.2rem 0; }
-  .event-time{ font-size:1.2rem; color:#76571f; margin:0.2rem 0 0.8rem; }
+  .event-card h3{ color:var(--wax-red-dark); font-size:1.5rem; margin-bottom:0.9rem; }
+  .event-date{ font-size:1.25rem; color:var(--wax-red-dark); margin:0.2rem 0; font-weight:700; }
+  .event-time{ font-size:1.2rem; color:var(--wax-red-dark); margin:0.2rem 0 0.8rem; font-weight:700; }
   .nikah-card .event-time{ margin-bottom:.25rem; }
   .event-followup{
     display:inline-block; margin:0 auto .7rem; padding:.35rem .8rem; border:1px solid rgba(178,138,61,.42);
-    border-radius:999px; background:rgba(255,255,255,.55); color:#29483b; font-size:1.1rem; font-weight:600;
+    border-radius:999px; background:rgba(255,255,255,.55); color:var(--wax-red-dark); font-size:1.1rem; font-weight:700;
   }
-  .event-venue{ font-size:1.1rem; color:#414b43; opacity:1; margin:0 0 1.3rem; line-height:1.5; }
+  .event-venue{ font-size:1.1rem; color:var(--wax-red-dark); opacity:1; margin:0 0 1.3rem; line-height:1.5; font-weight:600; }
   .map-btn{
     display:inline-block; padding:0.65rem 1.3rem; border-radius:30px;
     border:1px solid #b28a3d; color:#29483b; text-decoration:none;
@@ -409,10 +429,10 @@
   }
   .countdown-unit{
     display:flex; flex-direction:column; align-items:center; justify-content:center; min-width:0; padding:1rem .45rem 1.2rem;
-    border:1px solid rgba(255,255,255,.82); border-radius:12px;
-    background:linear-gradient(145deg,rgba(255,255,255,.62),rgba(255,250,237,.38));
-    backdrop-filter:blur(16px) saturate(165%); -webkit-backdrop-filter:blur(16px) saturate(165%);
-    box-shadow:inset 0 1px 1px rgba(255,255,255,.9),0 10px 24px rgba(74,15,15,.14);
+    border:1px solid rgba(255,255,255,.52); border-radius:12px;
+    background:linear-gradient(145deg,rgba(255,255,255,.38),rgba(255,250,237,.22));
+    backdrop-filter:blur(12px) saturate(140%); -webkit-backdrop-filter:blur(12px) saturate(140%);
+    box-shadow:inset 0 1px 1px rgba(255,255,255,.62),0 8px 18px rgba(74,15,15,.08);
     transition:box-shadow .3s ease,transform .3s ease,border-color .3s ease;
   }
   .countdown:hover .countdown-unit,.countdown:focus-within .countdown-unit{ transform:translateY(-3px); border-color:rgba(178,138,61,.9); box-shadow:0 0 18px rgba(255,204,77,.45),0 14px 28px rgba(74,15,15,.16),inset 0 1px rgba(255,255,255,.9); }
@@ -695,7 +715,7 @@
   invitationAudio.loop = true;
   var audioToggle = document.getElementById('audio-toggle');
   var petalFrame = null;
-  var audioFile = 'Audio/Music.mp3';
+  var audioFile = 'Audio/Mp3Jan.mp3';
   var hasAudioSupport = !!(invitationAudio && invitationAudio.canPlayType && invitationAudio.canPlayType('audio/mpeg'));
 
   function resizePetalCanvas(){
