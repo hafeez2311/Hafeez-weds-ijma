@@ -154,7 +154,7 @@
   .cover-open-button{
     position:absolute; inset:0; z-index:2; display:flex; align-items:flex-end; justify-content:center;
     width:100%; padding:0 1rem max(12vh,4rem); border:0; color:#fffaf0;
-    background:linear-gradient(180deg,transparent 55%,rgba(26,5,24,.56));
+    background:transparent;
   }
   .cover-open-button[hidden]{ display:none; }
   .cover-open-label{
@@ -276,8 +276,7 @@
   }
   @supports (-webkit-touch-callout: none){
     .audio-toggle,
-    .invitation-couple,
-    .cover-open-button {
+    .invitation-couple {
       -webkit-backdrop-filter:blur(8px) saturate(95%) brightness(1.04);
     }
   }
